@@ -1,0 +1,16 @@
+.container {
+    margin: 50px;
+    margin-right: 65%;
+}
+.card {
+    margin: 10px 10px !important;
+    transition: 1s !important;
+}
+/* .total {
+
+} */
+@media (max-width: 775px) {
+    .card {
+        margin: 2% 2% !important;
+    }
+}

@@ -1,0 +1,9 @@
+body {
+  background-image: linear-gradient(to right, #4880EC, #019CAD);
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

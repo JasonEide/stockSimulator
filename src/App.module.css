@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(15, 14, 14);
+  background-color: rgb(72, 69, 69);
 }
 .container {
   display: flex;
@@ -9,9 +9,9 @@ body {
 }
 .rectangle {
   display: inline-block;
-  width: 1000px;
-  height: 750px;
-  margin-top: 100px;
-  margin-bottom: 100px;
+  width: 1200px;
+  height: 800px;
+  margin-top: 50px;
+  margin-bottom: 50px;
   background-color: white;
 }

@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import {Pie} from 'react-chartjs-2';
+import {Line} from 'react-chartjs-2';
 import styles from './chart.module.css';
 
 export default function Charts() {
     const [currentData, setData] = useState([]);
 
-    const fetchData = async () => {
+    /*const fetchData = async () => {
         setData(await FETCHDATAHERE());
-    }
+    }*/
     
     useEffect(() => {
         setInterval(() => {
@@ -18,8 +18,8 @@ export default function Charts() {
     const pieChart = (
         currentData.length
         ? (
-            <Pie>
-            </Pie>
+            <Line>
+            </Line>
         ) : null
     )
     };

@@ -32,7 +32,7 @@ export default function Cards(/*You guys add parameters here. just read the code
             </Grid>
             <Grid item component={Card} xs={5} md={5} className={names(styles.card, styles.THIRDPARAMETER)} /* THIRD COMPONENT */>
                 <CardContent>
-                    <Typography color='textSecondary'>THIRD THING test</Typography> 
+                    <Typography color='textSecondary'>THIRD THING test</Typography>
                     <Typography variant='h5'>
                         <CountUp start={0} end={1000000} duration={2.5} separator=','/>
                     </Typography>

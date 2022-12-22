@@ -3,6 +3,11 @@ import styles from './App.module.css';
 import Cards from './components/cards/cards.jsx';
 import Input from './components/input/input.jsx';
 import {fetchData} from './api';
+import UserFormL from './components/userForm/userFormLogin'
+import UserFormR from './components/userForm/userFormRegister'
+import UserFormRegister from "./components/userForm/userFormRegister";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import UserFormLogin from "./components/userForm/userFormLogin";
 
 class App extends React.Component {
   state = {
@@ -16,12 +21,20 @@ class App extends React.Component {
     
   render() {
     return (
-      <div className={styles.container}>
-        <div className={styles.rectangle}>
-          <Input/>
-          <Cards/>
-        </div>
-      </div>
+        <Router>
+          <Routes>
+            <Route path={"/"} element={<UserFormLogin/>}/>
+            <Route path={"/register"} element={<UserFormRegister/>}/>
+            <Route path={"/home"} element={<div className={styles.container}>
+              <div className={styles.rectangle}>
+                <Input/>
+                <Cards/>
+              </div>
+            </div>}/>
+
+          </Routes>
+          {/*<Cards/>*/}
+        </Router>
     ) 
   }
 }

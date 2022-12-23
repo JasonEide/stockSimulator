@@ -17,12 +17,28 @@ function userFormR(){
                     </div>
                     <div className={styles.pass}>
                         <TextField 
-                                id="outlined-basic" 
+                                id="outlined-basic"
+                                type={"password"}
                                 label="Password" 
                                 variant="standard" 
                                 fullWidth
                             />
                     </div>
+                <div className={styles.pass}>
+                    <TextField
+                        type={"number"}
+                        InputProps={{
+                            inputProps: {
+                                max: 100000, min: 5000
+                            }
+                        }}
+                        min={"5000"}
+                        id="outlined-basic"
+                        label="Balance"
+                        variant="standard"
+                        fullWidth
+                    />
+                </div>
                     <div className={styles.buttonRegister}>
                         <Button variant="outlined">
                             Register

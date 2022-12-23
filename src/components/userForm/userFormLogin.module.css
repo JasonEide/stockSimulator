@@ -1,0 +1,44 @@
+body {
+    background-color: rgb(72, 69, 69);
+  }
+.container {
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+}
+.rectangle {
+display: inline-block;
+width: 500px;
+height: 500px;
+margin-top: 50px;
+margin-bottom: 50px;
+background-color: white;
+}
+.email {
+  margin-left: 20% !important;
+  margin-right: 20% !important;
+  margin-top: 30% !important;
+  
+}
+.pass {
+  padding-top: 20px;
+  margin-left: 20% !important;
+  margin-right: 20% !important;
+}
+.buttonLogin {
+  margin-left: 41% !important;
+  margin-top: 10% !important;
+}
+.register {
+  margin-top: 5% !important;
+  margin-left: 43.5% !important;
+}
+.buttonRegister {
+  margin-left: 38% !important;
+  margin-top: 10% !important;
+}
+.login {
+  margin-top: 5% !important;
+  margin-left: 44% !important;
+}

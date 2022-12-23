@@ -7,8 +7,8 @@ export const fetchData = async (pickedStock) => {
         stock = pickedStock;
     }
     try {
-        const {"Meta Data": {s} } = await axios.get(url);
-        console.log({s});
+        const {data: {"Meta Data": info}} = await axios.get(url);
+        console.log(info.log);
     } catch (error) {
         console.log(error);
     }

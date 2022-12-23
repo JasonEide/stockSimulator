@@ -21,16 +21,19 @@ class App extends React.Component {
     
   render() {
     return (
+
         <Router>
           <Routes>
             <Route path={"/"} element={<UserFormLogin/>}/>
             <Route path={"/register"} element={<UserFormRegister/>}/>
-            <Route path={"/home"} element={<div className={styles.container}>
+            <Route path={"/home"} element={
+            <div className={styles.container}>
               <div className={styles.rectangle}>
                 <Input/>
                 <Cards/>
               </div>
-            </div>}/>
+            </div>
+            }/>
 
           </Routes>
           {/*<Cards/>*/}

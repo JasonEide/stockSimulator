@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './App.module.css';
 import Cards from './components/cards/cards.jsx';
 import Input from './components/input/input.jsx';
+import Charts from './components/chart/chart';
 import {fetchData} from './api';
 import UserFormL from './components/userForm/userFormLogin'
 import UserFormR from './components/userForm/userFormRegister'
@@ -16,7 +17,7 @@ class App extends React.Component {
   }
   async componentDidMount() {
     const fetchedData = await fetchData();
-    this.setState({data: fetchedData})
+    this.setState({data: fetchedData, stock: fetchedData[0]["data"]["symbol"]})
   }
     
   render() {
@@ -31,6 +32,7 @@ class App extends React.Component {
               <div className={styles.rectangle}>
                 <Input/>
                 <Cards/>
+                <Charts stock={this.state.stock}/>
               </div>
             </div>
             }/>

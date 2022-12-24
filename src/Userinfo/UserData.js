@@ -1,15 +1,10 @@
-import {extendObservable } from 'mobx';
-
 class UserData{
-    constructor() {
-        extendObservable(this, {
-            loading: true,
-            isLoggedIn: false,
-            username: '',
-            password: '',
-            balance: '',
-            holdings: [],
-            
-        })
+    constructor(email, pass, bal) {
+        this.email = email;
+        this.pass = pass;
+        this.bal = bal;
+        this.holdings = [];
     }
 }
+
+export default UserData;

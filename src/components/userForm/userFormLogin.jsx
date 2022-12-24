@@ -1,10 +1,31 @@
-import React from 'react';
+import React, {useState} from 'react';
 import UserFormRegister from "./userFormRegister";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import styles from "./userFormLogin.module.css";
 import {TextField, Button} from "@material-ui/core";
 
-function userFormL(){
+
+
+
+function UserFormL(){
+    const [email, setemail] = useState("");
+    const emailhandler = event => {
+        setemail(event.target.value);
+    };
+    const [pass, setpass] = useState("");
+    const passhandler = event => {
+        setpass(event.target.value);
+    };
+    const navi = useNavigate();
+    const HandleClick=()=>{
+        if(localStorage.getItem("email")===email && localStorage.getItem("pass")===pass){
+            navi("/home");
+        }
+        else{
+            alert("Wrong username or password!")
+        }
+    }
+
     return(
         <div className={styles.container}>
             <div className={styles.rectangle}>
@@ -14,6 +35,8 @@ function userFormL(){
                             label="Email" 
                             variant="standard" 
                             fullWidth
+                            onChange={emailhandler}
+                            value={email}
                         />
                     </div>
                     <div className={styles.pass}>
@@ -22,10 +45,12 @@ function userFormL(){
                                 label="Password" 
                                 variant="standard" 
                                 fullWidth
+                                onChange={passhandler}
+                                value={pass}
                             />
                     </div>
                     <div className={styles.buttonLogin}>
-                        <Button variant="outlined">
+                        <Button variant="outlined" onClick={HandleClick}>
                             Login
                         </Button>
                     </div>
@@ -39,4 +64,4 @@ function userFormL(){
     )
 
 }
-export default userFormL;
+export default UserFormL;

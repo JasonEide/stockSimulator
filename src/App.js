@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './App.module.css';
 import Cards from './components/cards/cards.jsx';
 import Input from './components/input/input.jsx';
@@ -9,6 +9,8 @@ import UserFormR from './components/userForm/userFormRegister'
 import UserFormRegister from "./components/userForm/userFormRegister";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import UserFormLogin from "./components/userForm/userFormLogin";
+import userFormRegister from "./components/userForm/userFormRegister";
+import UserData from "./Userinfo/UserData";
 
 class App extends React.Component {
   state = {
@@ -19,7 +21,8 @@ class App extends React.Component {
     const fetchedData = await fetchData();
     this.setState({data: fetchedData, stock: fetchedData[0]["data"]["symbol"]})
   }
-    
+
+
   render() {
     return (
 
@@ -40,7 +43,7 @@ class App extends React.Component {
           </Routes>
           {/*<Cards/>*/}
         </Router>
-    ) 
+    )
   }
 }
 

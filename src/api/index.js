@@ -7,6 +7,7 @@ const stockArray = ["1. open", "2. high", "3. low", "4. close", "5. adjusted clo
 export const fetchData = async (pickedStock) => {
     if (pickedStock) {
         stock = pickedStock;
+        url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${stock}&apikey=XLOFSB8IFD1ERBB8`;
     }
     try {
         const {data: {"Meta Data": info, "Time Series (Daily)": updatedData}} = await axios.get(url);
@@ -30,6 +31,6 @@ export const fetchData = async (pickedStock) => {
         return [{data: chosenStockInfo, stockData: chosenStockData}, updatedData]
         
     } catch (error) {
-        console.log(error);
+        console.log("API reached maximum calls");
     }
 }

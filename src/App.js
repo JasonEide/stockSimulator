@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React from 'react';
 import styles from './App.module.css';
 import Cards from './components/cards/cards.jsx';
 import Input from './components/input/input.jsx';
@@ -11,19 +11,26 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import UserFormLogin from "./components/userForm/userFormLogin";
 import userFormRegister from "./components/userForm/userFormRegister";
 import UserData from "./Userinfo/UserData";
-import {Button} from "@material-ui/core";
 
 class App extends React.Component {
   state = {
     data: {},
-    stock: ''
+    stock: '',
+    prev_stock: ''
   }
   
   async componentDidMount() {
     const fetchedData = await fetchData();
-    this.setState({data: fetchedData, stock: fetchedData[0]["data"]["symbol"]})
+    const symbol = fetchedData[0]["data"]["symbol"];
+    this.setState({data: fetchedData, stock: symbol, prev_stock: symbol})
   }
-
+  async componentDidUpdate() {
+    console.log(this.state.stock, this.state.data)
+    if (this.state.stock != this.state.prev_stock) {
+      const fetchedData = await fetchData(this.state.stock);
+      this.setState({data: fetchedData, prev_stock: this.state.stock})
+    }
+  }
   render() {
     return (
         <Router>
@@ -35,7 +42,7 @@ class App extends React.Component {
               <div className={styles.rectangle}>
                 <Input data={this}/>
                 <Cards/>
-                <Charts stock={this.state.stock}/>
+                <Charts data={this.state.data}/>
               </div>
             </div>
             }/>

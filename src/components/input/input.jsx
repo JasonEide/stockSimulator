@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useRef} from 'react';
 import {TextField, Button} from '@material-ui/core'
 import styles from './input.module.css'
 import {fetchData} from '../../api';
@@ -6,8 +6,7 @@ import {fetchData} from '../../api';
 export default function Input({data}) {
     const stockRef = useRef();
     async function handleStock() {
-        const fetchedData = await fetchData(stockRef.current.value);
-        data.setState({data: fetchedData, stock: stockRef.current.value})
+        data.setState({stock: stockRef.current.value})
         stockRef.current.value = null;
     }  
     return (

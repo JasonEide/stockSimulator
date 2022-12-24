@@ -3,23 +3,14 @@ import {Line} from 'react-chartjs-2';
 import {Chart as ChartJS, registerables} from 'chart.js';
 import styles from './chart.module.css';
 import { fetchData } from '../../api';
-import { red } from '@material-ui/core/colors';
-import { rgbToHex } from '@material-ui/core';
 ChartJS.register(...registerables);
 
-export default function Charts({stock}) {
-    const [currentData, setData] = useState([{},{}]);
-    useEffect(() => {
-        const fetchAPI = async () => {
-            setData(await fetchData(stock));
-        }
-        fetchAPI();
-    }, []);
+export default function Charts({data}) {
+    const currentData = data;
     let dates = [];
     let open = [];
     let high = [];
     let low = [];
-    console.log(currentData);
     for (let i in currentData[1]) {
         dates.push(i);
         open.push(currentData[1][i]["1. open"])
@@ -40,15 +31,16 @@ export default function Charts({stock}) {
                     {
                         data: open, 
                         label: "open", 
-                        borderColor: "#3333ff", 
+                        borderColor: "#3333ff",
+                        backgroundColor: "rgba(51, 51, 255, 0.2)", 
                         borderWidth: 3,
                         fill: true,
-                        fillColor: "3333ff"
                     },  
                     { 
                         data: high, 
                         label: "high", 
                         borderColor: "#ff0000",
+                        backgroundColor: "rgba(255, 0, 0, 0.2)",
                         borderWidth: 3,
                         fill: true
                     },
@@ -56,6 +48,7 @@ export default function Charts({stock}) {
                         data: low, 
                         label: "low", 
                         borderColor: "#00ff00",
+                        backgroundColor: "rgba(0, 255, 0, 0.2)",
                         borderWidth: 3,
                         fill: true
                     }

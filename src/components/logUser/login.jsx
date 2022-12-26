@@ -4,6 +4,7 @@ import {Button, IconButton} from "@material-ui/core";
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import CloseIcon from '@material-ui/icons/Close';
 import FormatBoldIcon from '@material-ui/icons/FormatBold';
+import { Link } from "react-router-dom";
 
 export default function Login() {
     const [menu, setMenu] = useState(false);
@@ -25,23 +26,30 @@ export default function Login() {
 
     return (
         <div>
+            <div>
             <IconButton className={styles.container}>
                 {menu ? 
                     <CloseIcon className={styles.user} onClick={handleUserIcon}/> :
                     <PersonOutlineIcon className={styles.user} onClick={handleUserIcon}/>   
                 }
             </IconButton>
+            </div>
+
             <div className={styles.rectangle} id="menu">
                 {menu ?                 
                 <>
                     <div>
                         <Button variant="text" className={styles.loginButton}> 
-                                login
+                            <Link to={"/"} className={styles.link}>
+                                Login
+                            </Link>
                         </Button>
                     </div>
                     <div>
                         <Button variant="text" className={styles.registerButton}>
-                                register
+                            <Link to={"/register"} className={styles.link}>
+                                Register
+                            </Link>
                         </Button>
                     </div>
                 </> : null}

@@ -1,13 +1,20 @@
 import React, {useState} from 'react';
 import UserFormRegister from "./userFormRegister";
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useNavigate, useLocation} from "react-router-dom";
 import styles from "./userFormLogin.module.css";
 import {TextField, Button} from "@material-ui/core";
+import {db} from "./firebase-config"
+import {collection, getDocs} from "firebase/firestore";
 
 
 
 
 function UserFormL(){
+    const [users, setUsers] = useState([]);
+    const getUsers = async () =>{
+        const data = await getDocs(usersref);
+        setUsers(data.docs.map((doc) => ({...doc.data(), id:doc.id})))
+    }
     const [email, setemail] = useState("");
     const emailhandler = event => {
         setemail(event.target.value);
@@ -17,15 +24,25 @@ function UserFormL(){
         setpass(event.target.value);
     };
     const navi = useNavigate();
+    const usersref = collection(db, "users");
+    getUsers();
+
     const HandleClick=()=>{
-        if(localStorage.getItem("email")===email && localStorage.getItem("pass")===pass){
-            navi("/home");
+        let is_valid = false;
+        for(let i = 0; i< users.length; i++){
+            if(users[i].email === email && users[i].password === pass){
+                is_valid = true;
+                break;
+            }
+        }
+        if(is_valid){
+            navi("/home")
         }
         else{
-            alert("Wrong username or password!")
+            alert("Invalid Credentials, Please Try Again.")
         }
-    }
 
+        }
     return(
         <div className={styles.container}>
             <div className={styles.rectangle}>
@@ -41,8 +58,9 @@ function UserFormL(){
                     </div>
                     <div className={styles.pass}>
                         <TextField 
-                                id="outlined-basic" 
-                                label="Password" 
+                                id="outlined-basic"
+                                type={"Password"}
+                                label="Password"
                                 variant="standard" 
                                 fullWidth
                                 onChange={passhandler}

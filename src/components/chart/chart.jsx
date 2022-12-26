@@ -12,7 +12,8 @@ export default function Charts({data}) {
     let high = [];
     let low = [];
     for (let i in currentData[1]) {
-        dates.push(i);
+        const date = i.split('-');
+        dates.push(date[1] + '-' + date[2])
         open.push(currentData[1][i]["1. open"])
         high.push(currentData[1][i]["2. high"])
         low.push(currentData[1][i]["3. low"])
@@ -21,6 +22,7 @@ export default function Charts({data}) {
     open = open.reverse();
     high = high.reverse();
     low = low.reverse();
+    
     const lineChart = (
         currentData.length
         ? (
@@ -32,7 +34,7 @@ export default function Charts({data}) {
                         data: open, 
                         label: "open", 
                         borderColor: "#3333ff",
-                        backgroundColor: "rgba(51, 51, 255, 0.2)", 
+                        backgroundColor: "rgba(51, 51, 255, 0.2)",
                         borderWidth: 3,
                         fill: true,
                     },  
@@ -59,10 +61,16 @@ export default function Charts({data}) {
                         y: {
                             grid: {
                                 display: false
+                            },
+                            ticks: {
+                                display: false
                             }
                         },
                         x: {
                             grid: {
+                                display: false
+                            },
+                            ticks: {
                                 display: false
                             }
                         }

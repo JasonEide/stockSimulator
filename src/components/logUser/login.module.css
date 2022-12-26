@@ -1,0 +1,34 @@
+.container {
+    margin-left: 1130px !important;
+    margin-top: -770px !important;
+}
+.user {
+    font-size: 1.7rem;
+}
+.rectangle {
+    display: inline-block !important;
+    position: relative !important;
+    top: -360px !important;
+    left: 1170px;
+    width: 0px;
+    height: 0px;
+    background-color: rgb(248, 248, 248);
+    border-radius: 40px;
+    box-shadow:  10px 10px 20px #cbc9c9,
+                -10px -10px 20px #ffffff;
+    transition: 0.2s;
+}
+.loginButton {
+    position: relative !important;
+    left: 20px !important;
+    top: 20px !important;
+    border-radius: 33px;
+    font-weight: bold !important;
+}
+.registerButton {
+    position: relative !important;
+    left: 20px !important;
+    top: 20px !important;
+    border-radius: 33px;
+    font-weight: bold !important;
+}

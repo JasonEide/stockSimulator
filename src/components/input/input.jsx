@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import {TextField, Button, IconButton, InputAdornment} from '@material-ui/core'
+import {TextField, Button, IconButton} from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import AddIcon from '@material-ui/icons/Add';
 import styles from './input.module.css';
@@ -7,10 +7,12 @@ import {fetchData} from '../../api';
 
 export default function Input({data}) {
     const stockRef = useRef();
+
     async function handleStock() {
         data.setState({stock: stockRef.current.value})
         stockRef.current.value = null;
     }  
+
     async function handleAddStock() {
         /* 
         Add functionality to save specific data to the user's holdings...
@@ -22,9 +24,28 @@ export default function Input({data}) {
         */
         console.log(data.state.data);
     }
+
+    /* 
+    Listens for whenever user presses enter whenever focused into the search textfield.
+    */
+
+
     return (
         <div className={styles.container}>
-            <TextField id="stock" label="Search Stock" variant="outlined" inputRef={stockRef} type="text"/>
+            <TextField 
+            id="stock" 
+            label="Search Stock" 
+            variant="outlined" 
+            inputRef={stockRef} 
+            type="text"
+            onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                    e.preventDefault();
+                    handleStock();
+                }
+            }
+            }
+            />
             <IconButton className={styles.searchButton} onClick={handleStock}> 
                 <SearchIcon/>
             </IconButton>

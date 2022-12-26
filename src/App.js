@@ -3,6 +3,8 @@ import styles from './App.module.css';
 import Cards from './components/cards/cards.jsx';
 import Input from './components/input/input.jsx';
 import Charts from './components/chart/chart';
+import Login from './components/logUser/login';
+import Logout from './components/logUser/logout';
 import {fetchData} from './api';
 import UserFormL from './components/userForm/userFormLogin'
 import UserFormR from './components/userForm/userFormRegister'
@@ -10,11 +12,13 @@ import UserFormRegister from "./components/userForm/userFormRegister";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import UserFormLogin from "./components/userForm/userFormLogin";
 import userFormRegister from "./components/userForm/userFormRegister";
+
 class App extends React.Component {
   state = {
     data: {},
     stock: '',
-    prev_stock: ''
+    prev_stock: '',
+    logged: false
   }
   
   async componentDidMount() {
@@ -39,10 +43,10 @@ class App extends React.Component {
               <div className={styles.rectangle}>
                 <Input data={this}/>
                 <Charts data={this.state.data}/>
+                {this.state.logged ? <Logout/> : <Login/>}
               </div>
             </div>
             }/>
-
           </Routes>
           {/*<Cards/>*/}
         </Router>

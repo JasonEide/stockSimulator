@@ -10,8 +10,6 @@ import UserFormRegister from "./components/userForm/userFormRegister";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import UserFormLogin from "./components/userForm/userFormLogin";
 import userFormRegister from "./components/userForm/userFormRegister";
-import UserData from "./Userinfo/UserData";
-
 class App extends React.Component {
   state = {
     data: {},

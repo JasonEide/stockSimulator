@@ -2,11 +2,9 @@ import React, {useState} from 'react';
 import {Link, Navigate, redirect, useNavigate} from "react-router-dom";
 import styles from "./userFormLogin.module.css";
 import {TextField, Button} from "@material-ui/core";
-import UserData from "../../Userinfo/UserData";
 import app from "../../App";
-
-
-
+import {db} from "./firebase-config"
+import {collection, addDoc} from "firebase/firestore";
 
 
 function UserFormR(){
@@ -18,23 +16,19 @@ function UserFormR(){
     const passhandler = event => {
         setpass(event.target.value);
     };
-    const [bal, setbal] = useState("");
+    const [bal, setbal] = useState(0);
     const balhandler = event => {
         setbal(event.target.value);
     };
     const navi = useNavigate();
+    const usersref = collection(db, "users");
 
-    const HandleClick=()=>{
-        if(email!== '' && pass!=='' && bal!==''){
-            localStorage.setItem("email", email)
-            localStorage.setItem("pass", pass)
-            localStorage.setItem("balance", bal)
-            localStorage.setItem("signup", "True")
-            alert("Account Created! You'll be redircted to the home page.")
-            navi("/");
-
-        }
+    const register_user = async () => {
+        await addDoc(usersref, {email: email, password: pass, balance: bal, holdings: []});
+        alert("Account Created! You'll be redirected to login.")
+        navi("/");
     }
+
     return(
         <div className={styles.container}>
             <div className={styles.rectangle}>
@@ -76,7 +70,7 @@ function UserFormR(){
                     />
                 </div>
                     <div className={styles.buttonRegister}>
-                        <Button variant="outlined" onClick={HandleClick}>
+                        <Button variant="outlined" onClick={register_user}>
                             Register
                         </Button>
                     </div>

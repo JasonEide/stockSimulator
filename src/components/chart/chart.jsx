@@ -20,9 +20,7 @@ export default function Charts({data}) {
     }
     dates = dates.reverse();
     open = open.reverse();
-    high = high.reverse();
-    low = low.reverse();
-    
+
     const lineChart = (
         currentData.length
         ? (
@@ -31,28 +29,11 @@ export default function Charts({data}) {
                     labels: dates,
                     datasets: [
                     {
-                        data: open, 
-                        label: "open", 
+                        data: open,  
                         borderColor: "#3333ff",
                         backgroundColor: "rgba(51, 51, 255, 0.2)",
                         borderWidth: 3,
                         fill: true,
-                    },  
-                    { 
-                        data: high, 
-                        label: "high", 
-                        borderColor: "#ff0000",
-                        backgroundColor: "rgba(255, 0, 0, 0.2)",
-                        borderWidth: 3,
-                        fill: true
-                    },
-                    {
-                        data: low, 
-                        label: "low", 
-                        borderColor: "#00ff00",
-                        backgroundColor: "rgba(0, 255, 0, 0.2)",
-                        borderWidth: 3,
-                        fill: true
                     }
                 ]
                 }}
@@ -60,7 +41,8 @@ export default function Charts({data}) {
                     scales: {
                         y: {
                             grid: {
-                                display: false
+                                display: false,
+                                drawBorder: false
                             },
                             ticks: {
                                 display: false
@@ -68,7 +50,8 @@ export default function Charts({data}) {
                         },
                         x: {
                             grid: {
-                                display: false
+                                display: false,
+                                drawBorder: false
                             },
                             ticks: {
                                 display: false
@@ -78,6 +61,11 @@ export default function Charts({data}) {
                     elements: {
                         point: {
                             radius: 0
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
                         }
                     }
                 }}

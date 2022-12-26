@@ -25,7 +25,6 @@ class App extends React.Component {
     this.setState({data: fetchedData, stock: symbol, prev_stock: symbol})
   }
   async componentDidUpdate() {
-    console.log(this.state.stock, this.state.data)
     if (this.state.stock != this.state.prev_stock) {
       const fetchedData = await fetchData(this.state.stock);
       this.setState({data: fetchedData, prev_stock: this.state.stock})
@@ -41,7 +40,6 @@ class App extends React.Component {
             <div className={styles.container}>
               <div className={styles.rectangle}>
                 <Input data={this}/>
-                <Cards/>
                 <Charts data={this.state.data}/>
               </div>
             </div>

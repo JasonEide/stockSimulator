@@ -3,8 +3,7 @@ import styles from './App.module.css';
 import Cards from './components/cards/cards.jsx';
 import Input from './components/input/input.jsx';
 import Charts from './components/chart/chart';
-import Login from './components/logUser/login';
-import Logout from './components/logUser/logout';
+import Menu from './components/menuLogger/menu';
 import {fetchData} from './api';
 import UserFormL from './components/userForm/userFormLogin'
 import UserFormR from './components/userForm/userFormRegister'
@@ -36,14 +35,14 @@ class App extends React.Component {
     return (
         <Router>
           <Routes>
-            <Route path={"/"} element={<UserFormLogin/>}/>
+            <Route path={"/login"} element={<UserFormLogin/>}/>
             <Route path={"/register"} element={<UserFormRegister/>}/>
-            <Route path={"/home"} element={
+            <Route path={"/"} element={
             <div className={styles.container}>
               <div className={styles.rectangle}>
                 <Input data={this}/>
                 <Charts data={this.state.data}/>
-                {this.state.logged ? <Logout/> : <Login/>}
+                <Menu/>
               </div>
             </div>
             }/>

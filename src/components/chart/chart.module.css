@@ -2,8 +2,16 @@
     display: flex;
     justify-content: center;
     width: 55%;
-    margin-top: 10px;
-    margin-left: 5px;
+    margin-top: 4px;
+    margin-left: -8px;
+}
+.chartButton {
+    margin-left: 5px !important;
+    min-width: 1px !important;
+}
+.buttonContainer {
+    margin-top: 7px !important;
+    margin-left: 20px !important;
 }
 /*@media (max-width: 770px) {
     .container {

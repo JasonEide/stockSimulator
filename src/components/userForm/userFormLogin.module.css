@@ -14,6 +14,7 @@ height: 500px;
 margin-top: 50px;
 margin-bottom: 50px;
 background-color: white;
+border-radius: 40px;
 }
 .email {
   margin-left: 20% !important;
@@ -25,10 +26,11 @@ background-color: white;
   padding-top: 20px;
   margin-left: 20% !important;
   margin-right: 20% !important;
+  width: -100px;
 }
 .buttonLogin {
-  margin-left: 41% !important;
-  margin-top: 10% !important;
+  margin-left: 40% !important;
+  margin-top: 8% !important;
 }
 .register {
   margin-top: 5% !important;
@@ -36,9 +38,27 @@ background-color: white;
 }
 .buttonRegister {
   margin-left: 38% !important;
-  margin-top: 10% !important;
+  margin-top: 8% !important;
 }
 .login {
   margin-top: 5% !important;
   margin-left: 44% !important;
+}
+.link {
+  color: black;
+  text-decoration: none;
+}
+.loginBack {
+  margin-top: -715px !important;
+  margin-left: 12px !important;
+  font-size: small;
+}
+.registerBack {
+  margin-top: -851px !important;
+  margin-left: 12px !important;
+  font-size: small;
+}
+.backIcon {
+  margin-top: 0px;
+  margin-bottom: -5px;
 }

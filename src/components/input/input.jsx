@@ -33,17 +33,17 @@ export default function Input({data}) {
     return (
         <div className={styles.container}>
             <TextField 
-            id="stock" 
-            label="Search Stock" 
-            variant="outlined" 
-            inputRef={stockRef} 
-            type="text"
-            onKeyPress={(e) => {
-                if (e.key === "Enter") {
-                    e.preventDefault();
-                    handleStock();
+                id="stock" 
+                label="Search Stock" 
+                variant="outlined" 
+                inputRef={stockRef} 
+                type="text"
+                onKeyPress={(e) => {
+                    if (e.key === "Enter") {
+                        e.preventDefault();
+                        handleStock();
+                    }
                 }
-            }
             }
             />
             <IconButton className={styles.searchButton} onClick={handleStock}> 

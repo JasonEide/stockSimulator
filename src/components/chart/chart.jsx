@@ -1,8 +1,7 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useRef} from 'react';
 import {Line} from 'react-chartjs-2';
 import {Chart as ChartJS, registerables} from 'chart.js';
 import styles from './chart.module.css';
-import { fetchData } from '../../api';
 import { Button } from '@material-ui/core';
 ChartJS.register(...registerables);
 
@@ -17,7 +16,6 @@ export default function Charts({data}) {
     let dates = [];
     let open = [];
     let count = 0
-    console.log(ratioMonth[dateOption])
     for (let i in modifiedData) {
         const date = modifiedData[i][0].split('-');
         dates.push(date[1] + '-' + date[2])
@@ -33,8 +31,6 @@ export default function Charts({data}) {
     }
     dates = dates.reverse();
     open = open.reverse();
-    async function handleClick() {
-    }
 
     const lineChart = (
         data.length

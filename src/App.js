@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './App.module.css';
-import Cards from './components/cards/cards.jsx';
 import Input from './components/input/input.jsx';
 import Charts from './components/chart/chart';
 import Menu from './components/menuLogger/menu';
@@ -11,6 +10,7 @@ import UserFormRegister from "./components/userForm/userFormRegister";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import UserFormLogin from "./components/userForm/userFormLogin";
 import userFormRegister from "./components/userForm/userFormRegister";
+import Info from './components/info/info';
 
 class App extends React.Component {
   state = {
@@ -26,7 +26,7 @@ class App extends React.Component {
     this.setState({data: fetchedData, stock: symbol, prev_stock: symbol})
   }
   async componentDidUpdate() {
-    if (this.state.stock != this.state.prev_stock) {
+    if (this.state.stock !== this.state.prev_stock) {
       const fetchedData = await fetchData(this.state.stock);
       this.setState({data: fetchedData, prev_stock: this.state.stock})
     }
@@ -43,11 +43,11 @@ class App extends React.Component {
                 <Input data={this}/>
                 <Charts data={this.state.data}/>
                 <Menu/>
+                <Info data={this.state.data}/>
               </div>
             </div>
             }/>
           </Routes>
-          {/*<Cards/>*/}
         </Router>
     )
   }

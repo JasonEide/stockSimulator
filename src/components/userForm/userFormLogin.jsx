@@ -13,6 +13,8 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 
+export var curr_user = null;
+export var is_logged = false;
 function UserFormL(){
     const [users, setUsers] = useState([]);
     const getUsers = async () =>{
@@ -45,11 +47,13 @@ function UserFormL(){
         for(let i = 0; i< users.length; i++){
             if(users[i].email === email && users[i].password === values.password){
                 is_valid = true;
+                is_logged = true;
+                curr_user = users[i];
                 break;
             }
         }
         if(is_valid){
-            navi("/home")
+            navi("/")
         }
         else{
             alert("Invalid Credentials, Please Try Again.")

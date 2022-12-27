@@ -42,7 +42,7 @@ function UserFormR(){
     const register_user = async () => {
         await addDoc(usersRef, {email: email, password: values.password, balance: bal, holdings: []});
         alert("Account Created! You'll be redirected to login.")
-        navi("/");
+        navi("/login");
     }
 
     return(

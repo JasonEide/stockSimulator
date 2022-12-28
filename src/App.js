@@ -6,10 +6,11 @@ import Menu from './components/menuLogger/menu';
 import {fetchData} from './api';
 import UserFormL from './components/userForm/userFormLogin'
 import UserFormR from './components/userForm/userFormRegister'
-import UserFormRegister from "./components/userForm/userFormRegister";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import UserFormLogin from "./components/userForm/userFormLogin";
-import userFormRegister from "./components/userForm/userFormRegister";
+import UserFormRegister from "./components/userForm/userFormRegister";
+import UserFormAdd from "./components/userForm/userFormAdd";
+import UserFormSell from "./components/userForm/userFormSell";
 import Info from './components/info/info';
 
 class App extends React.Component {
@@ -37,14 +38,16 @@ class App extends React.Component {
           <Routes>
             <Route path={"/login"} element={<UserFormLogin/>}/>
             <Route path={"/register"} element={<UserFormRegister/>}/>
+            <Route path={"/add"} element={<UserFormAdd/>}/>
+            <Route path={"/sell"} element={<UserFormSell/>}/>
             <Route path={"/"} element={
             <div className={styles.container}>
               <div className={styles.rectangle}>
                 <Input data={this}/>
                 <Charts data={this.state.data}/>
                 <Menu/>
-                <Info data={this.state.data}/>
               </div>
+              <Info data={this.state.data}/>
             </div>
             }/>
           </Routes>

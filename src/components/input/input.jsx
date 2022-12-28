@@ -9,12 +9,13 @@ import UserFormL, {curr_user, is_logged, } from "../userForm/userFormLogin";
 import {updateDoc, doc, arrayUnion, setDoc} from "@firebase/firestore";
 import {db} from "../userForm/firebase-config";
 import {collection, getDocs} from "firebase/firestore";
-import {map} from "react-bootstrap/ElementChildren";
+import { Link } from "react-router-dom";
 
 export default function Input({data}) {
-    const [qt, setqt] = useState(1);
-    const qthandler = event => {
-        setqt(event.target.value);
+    const [qt, setQt] = useState(1);
+    const [add, setAdd] = useState(true);
+    const qtHandler = event => {
+        setQt(event.target.value);
     };
     const stockRef = useRef();
 
@@ -91,10 +92,9 @@ export default function Input({data}) {
             <IconButton className={styles.searchButton} onClick={handleStock}> 
                 <SearchIcon/>
             </IconButton>
-            <input type="number" id="quantity" name="Quantity" min={1} onChange={qthandler} value={qt}/>
-            <button type="button" className="btn btn-outline-success" onClick={handleAddStock}>Buy</button>
-            <button type="button" className="btn btn-outline-danger">Sell</button>
-
+            <IconButton className={styles.addButton} onClick={handleAddStock}>
+                <AddIcon/>
+            </IconButton>
         </div>
     )
 }

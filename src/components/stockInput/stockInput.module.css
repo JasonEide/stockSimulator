@@ -1,0 +1,77 @@
+.rectangle {
+    position: relative; 
+    display: inline-block;
+    top: -387px;
+    /* -767 -830*/
+    margin-left: 740px;
+    height: 370px; 
+    width: 300px;   
+    border-radius: 5px;
+    background: #ffffff;
+    box-shadow:  5px 5px 10px #c2c2c2,
+                 -5px -5px 10px #ffffff;
+}
+.addButton {
+    margin-left: 0.2% !important;
+    margin-top: 35px !important;
+    margin-left: 84px !important;
+    font-weight: bold !important;
+    font-size: small !important;
+}
+.bal {
+    text-align: right;
+    margin-left: 1px !important;
+    margin-right: 1px;
+    margin-top: -5px !important;
+    margin-bottom: -2px !important;
+    top: 0px !important;
+    left: 165px;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  margin-left: 5px; 
+}
+.body {
+    position: relative;
+    top: 30px !important;
+    left: 25px;
+    font-size: medium !important;
+    color:#a5a2a2;
+}
+.body2 {
+    position: relative;
+    top: 40px !important;
+    left: 25px;
+    font-size: medium !important;
+    font-weight: bold !important;
+}
+.mainTag {
+    position: relative;
+    top: 20px;
+    left: 20px;
+}
+.buyTag{
+    font-weight: bold !important;    
+}
+.balanceTag {
+    position: relative;
+    top: -27.5px;
+    left: 140px;
+}
+.price {
+    position: relative;
+    top: 6px;
+    left: 185px;
+}
+.cost {
+    position: relative;
+    top: 15px;
+    left: 184px;
+    font-weight: bold !important;
+}
+.reCost {
+    position: relative;
+    top: 15px;
+    left: 182px;
+    font-weight: bold !important;
+}

@@ -26,10 +26,10 @@ export default function Info({data}) {
               <Paper className={classes.paper}>{("peepee").toUpperCase()}</Paper>
               </Grid>
               <Grid item>
-              <Paper className={classes.paper}>{(data[0]["data"]["symbol"]).toUpperCase()}</Paper>
+              <Paper className={classes.paper}></Paper>
               </Grid>
               <Grid item>
-              <Paper className={classes.paper}>{"$" + data[0]["stockData"]["open"]}</Paper>
+              <Paper className={classes.paper}></Paper>
               </Grid>
             </Grid>
           : null}

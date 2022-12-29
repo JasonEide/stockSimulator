@@ -11,7 +11,8 @@ import UserFormLogin from "./components/userForm/userFormLogin";
 import UserFormRegister from "./components/userForm/userFormRegister";
 import Info from './components/info/info';
 import StockInput from './components/stockInput/stockInput';
-
+import MTable from './components/trading-history/table';
+import {Piechart} from "./components/piechart/piechart";
 class App extends React.Component {
   state = {
     data: {},
@@ -22,8 +23,10 @@ class App extends React.Component {
   
   async componentDidMount() {
     const fetchedData = await fetchData();
-    const symbol = fetchedData[0]["data"]["symbol"];
-    this.setState({data: fetchedData, stock: symbol, prev_stock: symbol})
+    if (fetchedData !== undefined) {
+      const symbol = fetchedData[0]["data"]["symbol"];
+      this.setState({data: fetchedData, stock: symbol, prev_stock: symbol})
+    }
   }
   async componentDidUpdate() {
     if (this.state.stock !== this.state.prev_stock) {
@@ -44,6 +47,9 @@ class App extends React.Component {
                 <Charts data={this.state.data}/>
                 <StockInput data={this}/>
                 <Menu/>
+                <MTable/>
+                <Piechart/>
+
               </div>
               
             </div>

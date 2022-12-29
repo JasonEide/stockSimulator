@@ -17,14 +17,6 @@ export default function StockInput({data}) {
         setQt(event.target.value);
     };
     async function handleAddStock() {
-        /*
-       Add functionality to save specific data to the user's holdings...
-       Note to add the date the person bought the stock and the value of the
-       stock at that time plus the name of it.
-
-       Below will be the data given to you that you will need to parse the data.
-       Refer to index.js for more information on how to index into the data.
-       */
         if(is_logged){
             let holdings_updated = false;
             if(curr_user.balance >= (data.state.data[0]['stockData']['adjusted_close'] * qt)){
@@ -52,6 +44,13 @@ export default function StockInput({data}) {
                     curr_user.holdings.push({'StockTIKR':data_tkr.toUpperCase(), 'Amount': parseInt(qt), 'Price':parseFloat(data.state.data[0]['stockData']['adjusted_close'])});
                     console.log(curr_user.holdings);
                 }
+                let data_tkr = data.state.data[0]['data']['symbol'];
+                let prc = parseFloat(data.state.data[0]['stockData']['adjusted_close'])
+                let histry = curr_user.trading_history;
+                histry.push({"date":new Date().toLocaleString(), "stock": data_tkr.toUpperCase(), "qt":parseInt(qt), "price":prc});
+                console.log(histry)
+                await updateDoc(user_ref, {trading_history: histry});
+                curr_user.trading_history = histry;
 
             }
             else{
@@ -61,7 +60,7 @@ export default function StockInput({data}) {
     }
     const modifiedData = data.state.data;
     const balance = (curr_user == null ? 0 : curr_user.balance);
-    const estimated_bal = (modifiedData.length > 0 ? (balance - Math.round(100 * (qt * modifiedData[0]["stockData"]["open"]))/100): null)
+    const estimated_bal = (modifiedData.length > 0 ? (balance - Math.round(100 * (qt * modifiedData[0]["stockData"]["adjusted_close"]))/100): null)
     return (
         <div>
             {modifiedData.length > 0 ? 
@@ -103,7 +102,7 @@ export default function StockInput({data}) {
                         Market Price
                     </Typography>
                     <Typography variant="body1" className={styles.price}>
-                        {"$" + Math.round(100 * modifiedData[0]["stockData"]["open"])/100}
+                        {"$" + Math.round(100 * modifiedData[0]["stockData"]["adjusted_close"])/100}
                     </Typography>
                 </div>
                 <div>
@@ -111,7 +110,7 @@ export default function StockInput({data}) {
                         Estimated Cost
                     </Typography>
                     <Typography variant="body1" className={styles.cost}>
-                        {"$" + Math.round(100 * (qt * modifiedData[0]["stockData"]["open"]))/100}
+                        {"$" + Math.round(100 * (qt * modifiedData[0]["stockData"]["adjusted_close"]))/100}
                     </Typography>
                 </div>
                 <div>

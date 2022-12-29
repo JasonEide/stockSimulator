@@ -23,13 +23,13 @@ const useStyles = makeStyles((theme) => ({
     },
     tableContainer: {
         borderRadius: 5,
-        margin: '-400px 10px',
+        margin: '-570px 10px',
         maxWidth: 650,
         maxHeight: 300
     },
     tableHeaderCell: {
         fontWeight: 'bold',
-        backgroundColor: theme.palette.primary.dark,
+        backgroundColor: "rgba(51, 51, 255, 0.5)",
         color: theme.palette.getContrastText(theme.palette.primary.dark)
     },
     avatar: {
@@ -119,7 +119,9 @@ function MTable() {
     }
     else{
         return(
-            <div>''</div>
+            <div>
+
+            </div>
         )
     }
 }

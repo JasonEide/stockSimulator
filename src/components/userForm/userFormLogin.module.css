@@ -49,16 +49,15 @@ border-radius: 40px;
   text-decoration: none;
 }
 .loginBack {
-  margin-top: -715px !important;
+  margin-top: -718px !important;
   margin-left: 12px !important;
-  font-size: small;
+  font-size: small !important;
 }
 .registerBack {
-  margin-top: -851px !important;
+  margin-top: -854px !important;
   margin-left: 12px !important;
-  font-size: small;
+  font-size: small !important;
 }
 .backIcon {
-  margin-top: 0px;
-  margin-bottom: -5px;
+  margin-top: 2px !important;
 }

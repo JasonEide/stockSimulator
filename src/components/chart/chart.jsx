@@ -32,21 +32,6 @@ export default function Charts({data}) {
 
     dates = dates.reverse();
     open = open.reverse();
-    const symbolname = {
-        id: 'symbolname',
-        beforeDatasetsDraw(chart, args, options) {
-            const {ctx, chartArea:{top, bottom, left, right, width, height} } = chart;
-            const x = chart.getDatasetMeta(0).data[0].x
-            const y = chart.getDatasetMeta(0).data[0].y
-            ctx.save();
-            ctx.globalAlpha = 0.5;
-            ctx.fillStyle = 'gray';
-            ctx.font = 'bold 50px sans-serif';
-            ctx.fillText(data[0]['data']['symbol'], x+230, y+100);
-            ctx.fillText("$"+data[0]['stockData']['adjusted_close'], x+230, y + 160);
-            ctx.restore();
-        }
-    }
 
     const lineChart = (
         data.length
@@ -96,8 +81,6 @@ export default function Charts({data}) {
                         }
                     }
                 }}
-                plugins={[symbolname]}
-
             />
         ) : null
     )

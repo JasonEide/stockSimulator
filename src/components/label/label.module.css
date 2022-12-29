@@ -1,0 +1,18 @@
+.container {
+    position: relative;
+    top: -265px;
+    margin-left: 230px;
+}
+.chartLabel {
+    font-weight: bold !important;
+    font-size: 50px !important;
+    font-family: sans-serif !important;
+    -webkit-text-fill-color: rgba(128,128,128, 0.5) !important;
+}
+.chartPriceLabel {
+    font-weight: bold !important;
+    font-size: 50px !important;
+    font-family: sans-serif !important;
+    -webkit-text-fill-color: rgba(128,128,128, 0.5) !important;
+    margin-top: -10px !important;
+}

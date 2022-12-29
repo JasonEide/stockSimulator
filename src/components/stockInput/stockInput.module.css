@@ -1,7 +1,7 @@
 .rectangle {
     position: relative; 
     display: inline-block;
-    top: -387px;
+    top: -527px;
     /* -767 -830*/
     margin-left: 740px;
     height: 370px; 
@@ -13,8 +13,12 @@
 }
 .addButton {
     margin-left: 0.2% !important;
-    margin-top: 35px !important;
-    margin-left: 84px !important;
+    margin-top: 37px !important;
+    margin-left: 104px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    padding-left: 30px !important;
+    padding-right: 30px!important;
     font-weight: bold !important;
     font-size: small !important;
 }
@@ -56,7 +60,7 @@ input[type=number]::-webkit-outer-spin-button {
 .balanceTag {
     position: relative;
     top: -27.5px;
-    left: 140px;
+    left: 130px;
 }
 .price {
     position: relative;

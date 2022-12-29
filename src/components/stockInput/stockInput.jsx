@@ -13,6 +13,7 @@ import {collection, getDocs} from "firebase/firestore";
 export default function StockInput({data}) {
     const [qt, setQt] = useState(1);
     const [add, setAdd] = useState(true);
+    const [balance, setBalance] = useState((curr_user == null ? 0 : curr_user.balance));
     const qtHandler = event => {
         setQt(event.target.value);
     };
@@ -25,6 +26,7 @@ export default function StockInput({data}) {
                 let bal = curr_user.balance - data.state.data[0]['stockData']['adjusted_close'] * qt;
                 await updateDoc(user_ref, {balance: bal});
                 curr_user.balance = bal;
+                setBalance(bal)
                 let holdings = curr_user.holdings
                 for(let i = 0; i<holdings.length; i++){
                     let usr_tkr = holdings[i]['StockTIKR'];
@@ -59,8 +61,7 @@ export default function StockInput({data}) {
         }
     }
     const modifiedData = data.state.data;
-    const balance = (curr_user == null ? 0 : curr_user.balance);
-    const estimated_bal = (modifiedData.length > 0 ? (balance - Math.round(100 * (qt * modifiedData[0]["stockData"]["adjusted_close"]))/100): null)
+    const estimated_bal = (modifiedData.length > 0 ? Math.round(100 * (balance - (qt * modifiedData[0]["stockData"]["adjusted_close"])))/100: null)
     return (
         <div>
             {modifiedData.length > 0 ? 
@@ -70,7 +71,7 @@ export default function StockInput({data}) {
                         {"Buy " + ((modifiedData[0]["data"]["symbol"]).toUpperCase())}
                     </Typography>
                     <Typography className={styles.balanceTag}>
-                        {"Balance: " + balance}
+                        {"Balance: " + Math.round(100 * balance)/100}
                     </Typography>
                 </div>
                 <div>
@@ -127,10 +128,10 @@ export default function StockInput({data}) {
                         className={styles.addButton} 
                         onClick={handleAddStock}
                         style={{
-                            backgroundColor: "rgba(51, 51, 255, 0.2)"
+                            backgroundColor: "rgba(51, 51, 255, 0.5)"
                         }}
                     >
-                        Add Stock
+                       Buy
                     </Button>
                 </div>
             </div>

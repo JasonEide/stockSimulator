@@ -13,12 +13,12 @@ import Info from './components/info/info';
 import StockInput from './components/stockInput/stockInput';
 import MTable from './components/trading-history/table';
 import {Piechart} from "./components/piechart/piechart";
+import Label from "./components/label/label";
 class App extends React.Component {
   state = {
     data: {},
     stock: '',
     prev_stock: '',
-    logged: false
   }
   
   async componentDidMount() {
@@ -44,7 +44,9 @@ class App extends React.Component {
             <div className={styles.container}>
               <div className={styles.rectangle}>
                 <Input data={this}/>
+
                 <Charts data={this.state.data}/>
+                <Label data={this.state.data}/>
                 <StockInput data={this}/>
                 <Menu/>
                 <MTable/>

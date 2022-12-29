@@ -25,6 +25,7 @@
     "react-countup": "^6.3.1",
     "react-dom": "^16.13.0",
     "react-router-dom": "^6.6.0",
+    "react-router-loading": "^1.0.0",
     "react-scripts": "5.0.1",
     "sass": "^1.57.1",
     "web-vitals": "^2.1.4"

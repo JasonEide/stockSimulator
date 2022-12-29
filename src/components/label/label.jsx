@@ -13,7 +13,7 @@ export default function Label({data}) {
                     {(data[0]['data']['symbol']).toUpperCase()}
                 </Typography>
                 <Typography className={styles.chartPriceLabel}>
-                    {"$"+data[0]['stockData']['adjusted_close']} 
+                    {"$" + (data[0]['stockData']['adjusted_close'])} 
                 </Typography>
             </div> : null}
 

@@ -15,3 +15,10 @@ body {
   margin-bottom: 50px;
   background-color: white;
 }
+.pieChart {
+  background-color: black;
+  background-size: 1px;
+  position: relative;
+  width: 1200px;
+  top: -650px;
+}

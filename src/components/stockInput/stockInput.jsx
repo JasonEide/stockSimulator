@@ -11,7 +11,7 @@ import {db} from "../userForm/firebase-config";
 import {collection, getDocs} from "firebase/firestore";
 
 export default function StockInput({data}) {
-    const [qt, setQt] = useState(1);
+    const [qt, setQt] = useState(0);
     const [add, setAdd] = useState(true);
     const [balance, setBalance] = useState((curr_user == null ? 0 : curr_user.balance));
     const qtHandler = event => {
@@ -35,7 +35,6 @@ export default function StockInput({data}) {
                         holdings[i]['Amount'] = parseInt(holdings[i]['Amount']) + parseInt(qt);
                         await updateDoc(user_ref, {holdings: holdings});
                         curr_user.holdings = holdings
-                        console.log(curr_user.holdings);
                         holdings_updated = true;
                     }
 
@@ -85,7 +84,7 @@ export default function StockInput({data}) {
                                 input: styles.bal
                             },
                             inputProps: {
-                                max: 100000, min: 1
+                                max: 100000, min: 0
                             }
                         }}
                         style={{

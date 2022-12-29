@@ -22,8 +22,10 @@ const useStyles = makeStyles((theme) => ({
         minHeight: 300
     },
     tableContainer: {
+        position: "relative",
+        left: "-300px",
         borderRadius: 5,
-        margin: '-570px 10px',
+        margin: '-380px 10px',
         maxWidth: 650,
         maxHeight: 300
     },

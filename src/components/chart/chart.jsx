@@ -153,7 +153,7 @@ export default function Charts({data}) {
                 </Button>
             </div>
             <div className={styles.container}>
-            {lineChart}
+                {lineChart}
             </div>
         </>
 

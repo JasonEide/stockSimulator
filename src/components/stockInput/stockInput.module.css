@@ -21,6 +21,7 @@
     padding-right: 30px!important;
     font-weight: bold !important;
     font-size: small !important;
+    -webkit-text-fill-color: white;
 }
 .bal {
     text-align: right;

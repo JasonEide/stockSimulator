@@ -12,7 +12,7 @@ import UserFormRegister from "./components/userForm/userFormRegister";
 import Info from './components/info/info';
 import StockInput from './components/stockInput/stockInput';
 import MTable from './components/trading-history/table';
-import {Piechart} from "./components/piechart/piechart";
+import PieChart from "./components/piechart/pieChart.jsx";
 import Label from "./components/label/label";
 class App extends React.Component {
   state = {
@@ -44,16 +44,15 @@ class App extends React.Component {
             <div className={styles.container}>
               <div className={styles.rectangle}>
                 <Input data={this}/>
-
                 <Charts data={this.state.data}/>
                 <Label data={this.state.data}/>
                 <StockInput data={this}/>
                 <Menu/>
-                <MTable/>
-                <Piechart/>
-
               </div>
-              
+              <div>
+                <MTable/>
+              </div>
+              <PieChart/>
             </div>
             }/>
           </Routes>

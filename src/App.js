@@ -4,14 +4,11 @@ import Input from './components/input/input.jsx';
 import Charts from './components/chart/chart';
 import Menu from './components/menuLogger/menu';
 import {fetchData} from './api';
-import UserFormL from './components/userForm/userFormLogin'
-import UserFormR from './components/userForm/userFormRegister'
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import UserFormLogin from "./components/userForm/userFormLogin";
 import UserFormRegister from "./components/userForm/userFormRegister";
-import Info from './components/info/info';
 import StockInput from './components/stockInput/stockInput';
-import MTable from './components/trading-history/table';
+import MTable from './components/trading-history/table.jsx';
 import PieChart from './components/pieChart/pieChart.jsx';
 import Label from "./components/label/label";
 

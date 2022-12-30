@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     },
     tableContainer: {
         position: "relative",
-        left: "-300px",
+        left: "-290px",
         borderRadius: 5,
         margin: '-780px 10px',
         maxWidth: 650,

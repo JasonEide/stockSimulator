@@ -14,6 +14,9 @@ body {
   margin-top: 50px;
   margin-bottom: 50px;
   background-color: white;
+  border-radius: 13px;
+  box-shadow:  5px 5px 10px #d9d9d9,
+  -5px -5px 10px #ffffff;
 }
 .pieChart {
   background-color: black;

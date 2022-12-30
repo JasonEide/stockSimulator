@@ -11,7 +11,7 @@ import {db} from "../userForm/firebase-config";
 import {collection, getDocs} from "firebase/firestore";
 
 export default function StockInput({data}) {
-    const [qt, setQt] = useState(0);
+    const [qt, setQt] = useState(1);
     const [add, setAdd] = useState(true);
     const [balance, setBalance] = useState((curr_user == null ? 0 : curr_user.balance));
     const qtHandler = event => {
@@ -43,20 +43,18 @@ export default function StockInput({data}) {
                     let data_tkr = data.state.data[0]['data']['symbol'];
                     await updateDoc(user_ref, {holdings: arrayUnion({'StockTIKR':data_tkr.toUpperCase(), 'Amount': parseInt(qt), 'Price':parseFloat(data.state.data[0]['stockData']['adjusted_close'])})});
                     curr_user.holdings.push({'StockTIKR':data_tkr.toUpperCase(), 'Amount': parseInt(qt), 'Price':parseFloat(data.state.data[0]['stockData']['adjusted_close'])});
-                    console.log(curr_user.holdings);
                 }
                 let data_tkr = data.state.data[0]['data']['symbol'];
                 let prc = parseFloat(data.state.data[0]['stockData']['adjusted_close'])
                 let histry = curr_user.trading_history;
                 histry.push({"date":new Date().toLocaleString(), "stock": data_tkr.toUpperCase(), "qt":parseInt(qt), "price":prc});
-                console.log(histry)
                 await updateDoc(user_ref, {trading_history: histry});
                 curr_user.trading_history = histry;
-
             }
             else{
                 alert("Insufficient Balance. stack more bread u broke fag.")
             }
+            data.setState({rerender: null})
         }
     }
     const modifiedData = data.state.data;
@@ -84,7 +82,7 @@ export default function StockInput({data}) {
                                 input: styles.bal
                             },
                             inputProps: {
-                                max: 100000, min: 0
+                                max: 100000, min: 1
                             }
                         }}
                         style={{

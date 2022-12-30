@@ -1,9 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import {curr_user, is_logged} from "../userForm/userFormLogin";
 import styles from './pieChart.module.css';
-
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function PieChart() {
@@ -50,10 +49,8 @@ export default function PieChart() {
         ) : null
     );
     return (
-        <React.Fragment>
             <div className={styles.chart}>
                 {pieChart}
             </div>
-        </React.Fragment>
     );
 }

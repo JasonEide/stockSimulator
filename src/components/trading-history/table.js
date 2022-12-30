@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
         position: "relative",
         left: "-300px",
         borderRadius: 5,
-        margin: '-380px 10px',
+        margin: '-780px 10px',
         maxWidth: 650,
         maxHeight: 300
     },

@@ -12,13 +12,15 @@ import UserFormRegister from "./components/userForm/userFormRegister";
 import Info from './components/info/info';
 import StockInput from './components/stockInput/stockInput';
 import MTable from './components/trading-history/table';
-import PieChart from "./components/piechart/pieChart.jsx";
+import PieChart from './components/pieChart/pieChart.jsx';
 import Label from "./components/label/label";
+
 class App extends React.Component {
   state = {
     data: {},
     stock: '',
     prev_stock: '',
+    rerender: null
   }
   
   async componentDidMount() {
@@ -31,7 +33,7 @@ class App extends React.Component {
   async componentDidUpdate() {
     if (this.state.stock !== this.state.prev_stock) {
       const fetchedData = await fetchData(this.state.stock);
-      this.setState({data: fetchedData, prev_stock: this.state.stock})
+      this.setState({data: fetchedData, stock: this.state.stock ,prev_stock: this.state.stock})
     }
   }
   render() {

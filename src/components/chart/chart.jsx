@@ -32,23 +32,32 @@ export default function Charts({data}) {
 
     dates = dates.reverse();
     open = open.reverse();
+    const dataa = (canvas) => {
+        const ctx = canvas.getContext("2d");
+        let gradient = ctx.createLinearGradient(0,0,0,300);
+        gradient.addColorStop(0, 'rgb(0,196,255)');
+        gradient.addColorStop(1, 'rgba(37,20,255,0)');
+
+        return{
+            labels: dates,
+            datasets: [
+                {
+                    data: open,
+                    borderColor: "#3333ff",
+                    backgroundColor: gradient,
+                    borderWidth: 3,
+                    fill: true,
+                }
+            ]
+
+        }
+    }
 
     const lineChart = (
         data.length
         ? (
             <Line
-                data={{
-                    labels: dates,
-                    datasets: [
-                    {
-                        data: open,  
-                        borderColor: "#3333ff",
-                        backgroundColor: "rgba(51, 51, 255, 0.2)",
-                        borderWidth: 3,
-                        fill: true,
-                    }
-                ]
-                }}
+                data={dataa}
                 options={{
                     scales: {
                         y: {
@@ -79,7 +88,7 @@ export default function Charts({data}) {
                         legend: {
                             display: false
                         }
-                    }
+                    },
                 }}
             />
         ) : null

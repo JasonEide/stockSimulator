@@ -9,8 +9,9 @@ import UserFormLogin from "./components/userForm/userFormLogin";
 import UserFormRegister from "./components/userForm/userFormRegister";
 import StockInput from './components/stockInput/stockInput';
 import MTable from './components/trading-history/table.jsx';
-import PieChart from './components/pieChart/pieChart.jsx';
+import PieChart from './components/piechart/pieChart.jsx';
 import Label from "./components/label/label";
+import Holdings from "./components/holdings/holdings";
 
 class App extends React.Component {
   state = {
@@ -52,6 +53,7 @@ class App extends React.Component {
                 <MTable/>
               </div>
               <PieChart/>
+              <Holdings/>
             </div>
             }/>
           </Routes>

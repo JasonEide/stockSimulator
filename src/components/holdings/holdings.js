@@ -18,16 +18,16 @@ import {
 
 const useStyles = makeStyles((theme) => ({
     table: {
-        minWidth: 590,
+        minWidth: 360,
         minHeight: 200
     },
     tableContainer: {
         position: "relative",
-        left: "-300px",
+        left: "+300px",
         borderRadius: 5,
-        margin: '-780px 28px',
-        maxWidth: 650,
-        maxHeight: 730
+        margin: '-788px 0px',
+        maxWidth: 400,
+        maxHeight: 350
     },
     tableHeaderCell: {
         fontWeight: 'bold',
@@ -53,8 +53,8 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function MTable() {
-    let lst = [{'date':'00/00/0000, 0:00:00', 'stock':'AAPL', 'price':111.11, 'qt':1,}]
+function Holdings() {
+    let lst = [{'StockTIKR':'AAPL', 'Amount':'Amount', 'Price':111.11,}]
     const classes = useStyles();
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -68,7 +68,10 @@ function MTable() {
         setPage(0);
     };
     if(is_logged){
-        lst = curr_user.trading_history.reverse()
+        lst = [...curr_user.holdings];
+        lst.sort(function(a,b){
+            return b.Amount - a.Amount;
+        })
     }
 
     return (
@@ -76,26 +79,21 @@ function MTable() {
             <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell className={classes.tableHeaderCell}>Date</TableCell>
                         <TableCell className={classes.tableHeaderCell}>Stock</TableCell>
                         <TableCell className={classes.tableHeaderCell}>Price</TableCell>
-                        <TableCell className={classes.tableHeaderCell}>Quantity</TableCell>
-                        <TableCell className={classes.tableHeaderCell}>Profit/Loss</TableCell>
+                        <TableCell className={classes.tableHeaderCell} sortDirection={'desc'}>Quantity</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {lst.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
                         <TableRow key={row.name}>
                             <TableCell>
-                                {row['date']}
+                                <Typography color="primary" variant="subtitle2">{row['StockTIKR']}</Typography>
                             </TableCell>
                             <TableCell>
-                                <Typography color="primary" variant="subtitle2">{row['stock']}</Typography>
+                                {row['Price']}
                             </TableCell>
-                            <TableCell>{row['price']}</TableCell>
-                            <TableCell>
-                                <Typography>{row['qt']}</Typography></TableCell>
-                            <TableCell>{row['price']*row['qt']}</TableCell>
+                            <TableCell>{row['Amount']}</TableCell>
                         </TableRow>
 
                     ))}
@@ -124,4 +122,4 @@ function MTable() {
     );
 }
 
-export default MTable;
+export default Holdings;

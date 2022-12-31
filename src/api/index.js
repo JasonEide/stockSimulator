@@ -1,13 +1,14 @@
 import axios from 'axios';
 
+const API_KEY = `XLOFSB8IFD1ERBB8`
 let stock = `AAPL`;
-let url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${stock}&apikey=XLOFSB8IFD1ERBB8`;
+let url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${stock}&apikey=${API_KEY}`;
 const infoArray = ["1. Information", "2. Symbol", "3. Last Refreshed", "4. Output Size", "5. Time Zone"];
 const stockArray = ["1. open", "2. high", "3. low", "4. close", "5. adjusted close", "6. volume", "7. dividend amount", "8. split coefficient"];
 export const fetchData = async (pickedStock) => {
     if (pickedStock) {
         stock = pickedStock;
-        url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${stock}&apikey=XLOFSB8IFD1ERBB8`;
+        url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${stock}&apikey=${API_KEY}`;
     }
     try {
         const {data: {"Meta Data": info, "Time Series (Daily)": updatedData}} = await axios.get(url);

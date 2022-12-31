@@ -125,7 +125,7 @@ export default function StockInput({data}) {
                         className={styles.addButton} 
                         onClick={handleAddStock}
                         style={{
-                            backgroundColor: "rgba(51, 51, 255, 0.5)"
+                            backgroundColor: "rgba(0, 128, 255, 0.8)"
                         }}
                     >
                        Buy

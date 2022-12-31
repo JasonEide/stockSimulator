@@ -32,7 +32,7 @@ export default function Charts({data}) {
 
     dates = dates.reverse();
     open = open.reverse();
-    const dataa = (canvas) => {
+    const chartData = (canvas) => {
         const ctx = canvas.getContext("2d");
         let gradient = ctx.createLinearGradient(0,0,0,300);
         gradient.addColorStop(0, 'rgb(0,196,255)');
@@ -57,7 +57,7 @@ export default function Charts({data}) {
         data.length
         ? (
             <Line
-                data={dataa}
+                data={chartData}
                 options={{
                     scales: {
                         y: {
@@ -105,7 +105,7 @@ export default function Charts({data}) {
                     id="week" 
                     variant={(dateOption === "week") ? "contained" : "outlined"}
                     style={{
-                        backgroundColor: (dateOption === "week")? "rgba(51, 51, 255, 0.2)" : "white"
+                        backgroundColor: (dateOption === "week")? "rgba(0, 128, 255, 0.8)" : "white"
                     }}
                     className={styles.chartButton} 
                     onClick={() => setDateOption(weekState.current.id)}
@@ -117,7 +117,7 @@ export default function Charts({data}) {
                     id="oneMonth" 
                     variant={(dateOption === "oneMonth") ? "contained" : "outlined"}
                     style={{
-                        backgroundColor: (dateOption === "oneMonth")? "rgba(51, 51, 255, 0.2)" : "white"
+                        backgroundColor: (dateOption === "oneMonth")? "rgba(0, 128, 255, 0.8)" : "white"
                     }}
                     className={styles.chartButton} 
                     onClick={() => setDateOption(oneMonthState.current.id)}
@@ -129,7 +129,7 @@ export default function Charts({data}) {
                     id="twoMonth" 
                     variant={(dateOption === "twoMonth") ? "contained" : "outlined"}
                     style={{
-                        backgroundColor: (dateOption === "twoMonth")? "rgba(51, 51, 255, 0.2)" : "white"
+                        backgroundColor: (dateOption === "twoMonth")? "rgba(0, 128, 255, 0.8)" : "white"
                     }}
                     className={styles.chartButton} 
                     onClick={() => setDateOption(twoMonthState.current.id)}
@@ -141,7 +141,7 @@ export default function Charts({data}) {
                     id="threeMonth" 
                     variant={(dateOption === "threeMonth") ? "contained" : "outlined"}
                     style={{
-                        backgroundColor: (dateOption === "threeMonth")? "rgba(51, 51, 255, 0.2)" : "white"
+                        backgroundColor: (dateOption === "threeMonth")? "rgba(0, 128, 255, 0.8)" : "white"
                     }}
                     className={styles.chartButton} 
                     onClick={() => setDateOption(threeMonthState.current.id)}
@@ -153,7 +153,7 @@ export default function Charts({data}) {
                     id="fourMonth" 
                     variant={(dateOption === "fourMonth") ? "contained" : "outlined"} 
                     style={{
-                        backgroundColor: (dateOption === "fourMonth")? "rgba(51, 51, 255, 0.2)" : "white"
+                        backgroundColor: (dateOption === "fourMonth")? "rgba(0, 128, 255, 0.8)" : "white"
                     }}
                     className={styles.chartButton} 
                     onClick={() => setDateOption(fourMonthState.current.id)}

@@ -9,10 +9,11 @@ export default function Charts({data}) {
     const [dateOption, setDateOption] = useState("fourMonth")
     const ratioMonth = {"week": 7, "oneMonth": 30, "twoMonth": 60, "threeMonth": 90, "fourMonth": 120}
     const currentData = data[1];
+    console.log(data)
     let modifiedData = [];
     for (let i in currentData) {
         modifiedData.push([i ,currentData[i]]);  
-    } 
+    }
     let dates = [];
     let open = [];
     let count = 0

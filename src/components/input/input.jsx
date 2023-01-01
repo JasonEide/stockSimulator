@@ -5,26 +5,18 @@ import AddIcon from '@material-ui/icons/Add';
 import styles from './input.module.css';
 import {fetchData} from '../../api';
 import button from "bootstrap/js/src/button";
-import UserFormL, {curr_user, is_logged, } from "../userForm/userFormLogin";
+import UserFormL, {curr_user, is_logged} from "../userForm/userFormLogin";
 import {updateDoc, doc, arrayUnion, setDoc} from "@firebase/firestore";
 import {db} from "../userForm/firebase-config";
 import {collection, getDocs} from "firebase/firestore";
 
 export default function Input({data}) {
-
     const stockRef = useRef();
 
     async function handleStock() {
         data.setState({stock: stockRef.current.value})
         stockRef.current.value = null;
     }  
-
-   
-
-    /* 
-    Listens for whenever user presses enter whenever focused into the search textfield.
-    */
-
 
     return (
         <div className={styles.container}>

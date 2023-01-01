@@ -1,16 +1,10 @@
-import React, {useRef, useState} from 'react';
-import {TextField, Button, IconButton, Typography} from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
-import AddIcon from '@material-ui/icons/Add';
+import React, {useState} from 'react';
+import {TextField, Button, Typography} from '@material-ui/core';
 import styles from './stockInput.module.css';
-import { fetchData } from '../../api';
-import button from "bootstrap/js/src/button";
-import UserFormL, {curr_user, is_logged} from "../userForm/userFormLogin";
-import {updateDoc, doc, arrayUnion, setDoc, arrayRemove} from "@firebase/firestore";
+import {curr_user, is_logged} from "../userForm/userFormLogin";
+import {updateDoc, doc, arrayUnion} from "@firebase/firestore";
 import {db} from "../userForm/firebase-config";
-import {collection, getDocs} from "firebase/firestore";
 import {Tabs, Tab, AppBar} from "@material-ui/core";
-import {green} from "@mui/material/colors";
 
 export default function StockInput({data}) {
     const [qt, setQt] = useState(1);
@@ -59,7 +53,7 @@ export default function StockInput({data}) {
             data.setState({rerender: null})
         }
     }
-    async function handleremovestock(){
+    async function handleRemoveStock(){
         const user_ref = doc(db, "users", curr_user.id);
         if(is_logged){
             let holdings = curr_user.holdings;
@@ -183,12 +177,11 @@ export default function StockInput({data}) {
     const modifiedData = data.state.data;
     const estimated_bal = (modifiedData.length > 0 ? Math.round(100 * (balance - (qt * modifiedData[0]["stockData"]["adjusted_close"])))/100: null)
     const estimated_bal2 = (modifiedData.length > 0 ? Math.round(100 * (balance + (qt * modifiedData[0]["stockData"]["adjusted_close"])))/100: null)
-    let [profit, setprofit] = useState(0);
-    function profitcalc(){
+    function profitCalc(){
         if(modifiedData.length>0 && is_logged){
-            for(let i = 0; i < curr_user.holdings; i++){
-                if(curr_user.holdings[i]['StockTIKR'] === modifiedData[0]['data']['symbol']){
-                     setprofit(curr_user.holdings[i]['Price'] - modifiedData[0]['stockData']['adjusted_close']);
+            for(let i = 0; i < curr_user.holdings.length; i++){
+                if (curr_user.holdings[i]['StockTIKR'] === modifiedData[0]['data']['symbol'].toUpperCase()){
+                    return Math.round(100 * (curr_user.holdings[i]['Price'] - modifiedData[0]['stockData']['adjusted_close']))/100;
                 }
             }
 
@@ -204,27 +197,32 @@ export default function StockInput({data}) {
             }
         </div>)
     }
-    const [value, setvalue] = useState(0)
+    const [value, setValue] = useState(0)
     const handleTabs=(e,val)=>{
         console.warn(val)
-        setvalue(val)
+        setValue(val)
+    }
+    let estimatedValue = 0;
+    if (is_logged) {
+        estimatedValue = profitCalc()
     }
     return (
         <div>
             <h1></h1>
             <AppBar position={"absolute"} style={{
-                margin:'75px 319.5px',
-                maxWidth: '300px',
-                backgroundColor:"rgb(0,0,0)"
+                margin:'75px 385.5px',
+                maxWidth: '301px',
+                backgroundColor:'white'
             }}>
-                <Tabs value={value} onChange={handleTabs} TabIndicatorProps={{
-                    style:{backgroundColor:"rgb(255,255,255)", hidden: true}
+                <Tabs value={value} textColor="primary" indicatorColor="primary" onChange={handleTabs} TabIndicatorProps={{
+                    style:{hidden: true}
                 }}>
                     <Tab label={"Buy"}/>
                     <Tab label={"Sell"}/>
                 </Tabs>
             </AppBar>
-            <TabPanel value={value} index={0} data={<div>            {modifiedData.length > 0 ?
+            <TabPanel value={value} index={0} data={<div>
+                {modifiedData.length > 0 ?
                 <div className={styles.rectangle}>
                     <div className={styles.mainTag}>
                         <Typography variant="h6" className={styles.buyTag}>
@@ -344,7 +342,7 @@ export default function StockInput({data}) {
                             Est. Profit/Share
                         </Typography>
                         <Typography variant="body1" className={styles.cost}>
-                            {"$" + profit}
+                            {(estimatedValue < 0 ? "-$" : "$") + Math.abs(estimatedValue)}
                         </Typography>
                     </div>
                     <div>
@@ -359,7 +357,7 @@ export default function StockInput({data}) {
                         <Button
                             variant="contained"
                             className={styles.addButton}
-                            onClick={handleremovestock}
+                            onClick={handleRemoveStock}
                             style={{
                                 backgroundColor: "rgba(255,0,0,0.8)"
                             }}

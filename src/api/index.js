@@ -28,7 +28,6 @@ export const fetchData = async (pickedStock) => {
             dividend_amount: modifiedData[stockArray[6]],
             split_coefficient: modifiedData[stockArray[7]]
         }
-        /*console.log([{data: chosenStockInfo, stockData: chosenStockData}, updatedData]);*/
         return [{data: chosenStockInfo, stockData: chosenStockData}, updatedData]
         
     } catch (error) {

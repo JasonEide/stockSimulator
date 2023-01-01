@@ -15,7 +15,7 @@ import Holdings from "./components/holdings/holdings";
 
 class App extends React.Component {
   state = {
-    data: {},
+    data: [],
     stock: '',
     prev_stock: '',
     rerender: null

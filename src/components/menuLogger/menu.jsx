@@ -4,6 +4,7 @@ import {Button, IconButton} from "@material-ui/core";
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import CloseIcon from '@material-ui/icons/Close';
 import { Link } from "react-router-dom";
+import {is_logged} from "../userForm/userFormLogin";
 
 export default function Menu() {
     const [menu, setMenu] = useState(false);
@@ -23,6 +24,10 @@ export default function Menu() {
         setMenu(!menu);
     }
 
+    async function logoutUser() {
+        
+    }
+
     return (
         <div>
             <div>
@@ -35,7 +40,7 @@ export default function Menu() {
             </div>
 
             <div className={styles.rectangle} id="menu">
-                {menu ?                 
+                {menu && !is_logged ?                 
                 <>
                     <div>
                         <Button variant="text" className={styles.loginButton}> 
@@ -52,6 +57,14 @@ export default function Menu() {
                         </Button>
                     </div>
                 </> : null}
+                {menu && is_logged ?
+                <>
+                    <div>
+                        <Button variant="text" className={styles.logoutButton} onClick={logoutUser}>
+                            Logout
+                        </Button>
+                    </div>
+                </>: null}
             </div>
         </div>
     )

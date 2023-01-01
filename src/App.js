@@ -18,7 +18,8 @@ class App extends React.Component {
     data: [],
     stock: '',
     prev_stock: '',
-    rerender: null
+    rerender: null,
+    tickers: []
   }
   
   async componentDidMount() {

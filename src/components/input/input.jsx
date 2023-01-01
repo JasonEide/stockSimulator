@@ -9,13 +9,16 @@ import UserFormL, {curr_user, is_logged} from "../userForm/userFormLogin";
 import {updateDoc, doc, arrayUnion, setDoc} from "@firebase/firestore";
 import {db} from "../userForm/firebase-config";
 import {collection, getDocs} from "firebase/firestore";
+import {tickers} from '../../utilities/tickers';
 
 export default function Input({data}) {
     const stockRef = useRef();
 
     async function handleStock() {
-        data.setState({stock: stockRef.current.value})
-        stockRef.current.value = null;
+        if (tickers.includes(stockRef.current.value.toUpperCase())) {
+            data.setState({stock: stockRef.current.value})
+            stockRef.current.value = null;
+        }
     }  
 
     return (

@@ -8,7 +8,7 @@
 .rectangle {
     display: inline-block !important;
     position: relative !important;
-    top: -930px !important;
+    top: -940px !important;
     left: 1170px;
     width: 0px;
     height: 0px;
@@ -17,6 +17,7 @@
     box-shadow:  10px 10px 20px #cbc9c9,
                 -10px -10px 20px #ffffff;
     transition: 0.3s;
+    z-index: 2;
 }
 .loginButton {
     position: relative !important;

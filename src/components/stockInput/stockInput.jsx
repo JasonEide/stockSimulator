@@ -208,11 +208,11 @@ export default function StockInput({data}) {
     }
     return (
         <div>
-            <h1></h1>
             <AppBar position={"absolute"} style={{
-                margin:'75px 385.5px',
+                margin:'70px 520px',
                 maxWidth: '301px',
-                backgroundColor:'white'
+                backgroundColor:'white',
+                zIndex: 1
             }}>
                 <Tabs value={value} textColor="primary" indicatorColor="primary" onChange={handleTabs} TabIndicatorProps={{
                     style:{hidden: true}

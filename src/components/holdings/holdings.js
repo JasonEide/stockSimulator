@@ -25,7 +25,15 @@ const useStyles = makeStyles((theme) => ({
         position: "relative",
         left: "+300px",
         borderRadius: 5,
-        margin: '-788px 0px',
+        top: '-788px',
+        maxWidth: 400,
+        maxHeight: 350
+    },
+    tableContainerMinimized: {
+        position: "relative",
+        left: "+300px",
+        borderRadius: 5,
+        top: '-1118px',
         maxWidth: 400,
         maxHeight: 350
     },
@@ -75,7 +83,7 @@ function Holdings() {
     }
 
     return (
-        <TableContainer component={Paper} className={classes.tableContainer}>
+        <TableContainer component={Paper} className={is_logged ? curr_user.holdings.length > 0 ? classes.tableContainer : classes.tableContainerMinimized : classes.tableContainerMinimized}>
             <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                     <TableRow>

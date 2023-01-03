@@ -71,6 +71,7 @@ export default function StockInput({data}) {
                         bal = bal + (qt*data.state.data[0]['stockData']['adjusted_close'])
                         await updateDoc(user_ref, {balance: bal})
                         curr_user.balance = bal;
+                        setBalance(bal);
                         let data_tkr = data.state.data[0]['data']['symbol'];
                         let prc = parseFloat(data.state.data[0]['stockData']['adjusted_close'])
                         let histry = curr_user.trading_history;
@@ -108,9 +109,7 @@ export default function StockInput({data}) {
                         await updateDoc(user_ref, {trading_history: histry});
                         curr_user.trading_history = histry;
                         ActionCompleted = true;
-                        alert("Shares sucessfully sold!")
                         break;
-
                     }
                     if(parseInt(qt) === holdings[i]['Amount']){
                         holdings.splice(i, 1);
@@ -130,10 +129,12 @@ export default function StockInput({data}) {
                             if(histry[i]['stock'] === (data.state.data[0]['data']['symbol']).toUpperCase() && histry[i]["type"] === "buy"){
                                 if(curr_qt!==0){
                                     if(curr_qt>=histry[i]['qt']){
-                                        histry.push({"date":new Date().toLocaleString(), "stock": data_tkr,
-                                            "qt":histry[i]["qt"], "price":histry[i]["price"],
+                                        histry.push({"date":new Date().toLocaleString(), 
+                                            "stock": data_tkr,
+                                            "qt": histry[i]["qt"], 
+                                            "price": histry[i]["price"],
                                             "ordertype":"SELL",
-                                            "Profit/Loss":histry[i]["qt"]*prc - histry[i]["qt"]*histry[i]['price']});
+                                            "Profit/Loss": histry[i]["qt"]*prc - histry[i]["qt"]*histry[i]['price']});
                                         curr_qt = curr_qt - histry[i]['qt'];
                                         histry[i]['Profit/Loss'] = "CLOSED";
                                         histry[i]['qt'] = 0;
@@ -141,8 +142,8 @@ export default function StockInput({data}) {
                                     if(curr_qt<histry[i]['qt']){
                                         histry.push({"date":new Date().toLocaleString(),
                                             "stock": data_tkr, "qt":parseInt(curr_qt) ,
-                                            "price":histry[i]["price"],
-                                            "ordertype":"SELL",
+                                            "price": histry[i]["price"],
+                                            "ordertype": "SELL",
                                             "Profit/Loss": parseInt(curr_qt)*prc - parseInt(curr_qt)*histry[i]['price']});
                                         histry[i]['qt'] = histry[i]['qt'] - curr_qt;
                                         curr_qt = 0;
@@ -157,7 +158,6 @@ export default function StockInput({data}) {
                         await updateDoc(user_ref, {trading_history: histry});
                         curr_user.trading_history = histry;
                         ActionCompleted = true;
-                        alert("Shares sucessfully sold!")
                         break;
                     }
                 }
@@ -171,6 +171,7 @@ export default function StockInput({data}) {
             if(!ActionCompleted){
                 alert("Not enough shares own to sell the quantity requested.")
             }
+            data.setState({rerender: null})
         }
 
     }
@@ -178,6 +179,9 @@ export default function StockInput({data}) {
     const estimated_bal = (modifiedData.length > 0 ? Math.round(100 * (balance - (qt * modifiedData[0]["stockData"]["adjusted_close"])))/100: null)
     const estimated_bal2 = (modifiedData.length > 0 ? Math.round(100 * (balance + (qt * modifiedData[0]["stockData"]["adjusted_close"])))/100: null)
     function profitCalc(){
+        if (curr_user.holdings.length === 0) {
+            return 0;
+        }
         if(modifiedData.length>0 && is_logged){
             for(let i = 0; i < curr_user.holdings.length; i++){
                 if (curr_user.holdings[i]['StockTIKR'] === modifiedData[0]['data']['symbol'].toUpperCase()){

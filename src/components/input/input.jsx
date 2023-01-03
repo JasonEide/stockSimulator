@@ -27,6 +27,7 @@ export default function Input({data}) {
                 id="stock" 
                 label="Search Stock" 
                 variant="outlined" 
+                className={styles.text}
                 inputRef={stockRef} 
                 type="text"
                 onKeyPress={(e) => {
@@ -34,8 +35,12 @@ export default function Input({data}) {
                         e.preventDefault();
                         handleStock();
                     }
-                }
-            }
+                }}
+                InputLabelProps={{
+                    classes: {
+                        root: styles.label
+                    }
+                }}
             />
             <IconButton className={styles.searchButton} onClick={handleStock}> 
                 <SearchIcon/>

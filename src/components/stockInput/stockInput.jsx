@@ -209,7 +209,7 @@ export default function StockInput({data}) {
     return (
         <div>
             <AppBar position={"relative"} style={{
-                margin:'-520px 700px',
+                margin:'-565px 740px',
                 maxWidth: '301px',
                 backgroundColor:'white',
                 zIndex: 1

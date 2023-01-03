@@ -1,9 +1,9 @@
 .rectangle {
     position: relative; 
     display: inline-block;
-    top: -537px;
+    top: 510px;
     /* -767 -830*/
-    margin-left: 740px;
+    margin-left: 701px;
     height: 370px; 
     width: 300px;   
     border-radius: 5px;

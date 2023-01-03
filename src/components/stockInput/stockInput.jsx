@@ -79,7 +79,7 @@ export default function StockInput({data}) {
                             if(curr_qt === 0){
                                 break;
                             }
-                            if(histry[i]['stock'] === "TSLA" && histry[i]["type"] === "buy"){
+                            if(histry[i]['stock'] === (data.state.data[0]['data']['symbol']).toUpperCase() && histry[i]["type"] === "buy"){
                                 if(curr_qt!==0){
                                     if(curr_qt>=histry[i]['qt']){
                                         histry.push({"date":new Date().toLocaleString(),
@@ -127,7 +127,7 @@ export default function StockInput({data}) {
                             if(curr_qt === 0){
                                 break;
                             }
-                            if(histry[i]['stock'] === "TSLA" && histry[i]["type"] === "buy"){
+                            if(histry[i]['stock'] === (data.state.data[0]['data']['symbol']).toUpperCase() && histry[i]["type"] === "buy"){
                                 if(curr_qt!==0){
                                     if(curr_qt>=histry[i]['qt']){
                                         histry.push({"date":new Date().toLocaleString(), "stock": data_tkr,
@@ -208,8 +208,8 @@ export default function StockInput({data}) {
     }
     return (
         <div>
-            <AppBar position={"absolute"} style={{
-                margin:'70px 520px',
+            <AppBar position={"relative"} style={{
+                margin:'-520px 700px',
                 maxWidth: '301px',
                 backgroundColor:'white',
                 zIndex: 1
@@ -223,150 +223,150 @@ export default function StockInput({data}) {
             </AppBar>
             <TabPanel value={value} index={0} data={<div>
                 {modifiedData.length > 0 ?
-                <div className={styles.rectangle}>
-                    <div className={styles.mainTag}>
-                        <Typography variant="h6" className={styles.buyTag}>
-                            {"Buy " + ((modifiedData[0]["data"]["symbol"]).toUpperCase())}
-                        </Typography>
-                        <Typography className={styles.balanceTag}>
-                            {"Balance: " + Math.round(100 * balance)/100}
-                        </Typography>
+                    <div className={styles.rectangle}>
+                        <div className={styles.mainTag}>
+                            <Typography variant="h6" className={styles.buyTag}>
+                                {"Buy " + ((modifiedData[0]["data"]["symbol"]).toUpperCase())}
+                            </Typography>
+                            <Typography className={styles.balanceTag}>
+                                {"Balance: " + Math.round(100 * balance)/100}
+                            </Typography>
+                        </div>
+                        <div>
+                            <Typography variant="body2" className={styles.body}>
+                                Shares
+                            </Typography>
+                            <TextField
+                                type={"number"}
+                                InputProps={{
+                                    classes: {
+                                        input: styles.bal
+                                    },
+                                    inputProps: {
+                                        max: 100000, min: 1
+                                    }
+                                }}
+                                style={{
+                                    width: 100,
+                                }}
+                                className={styles.bal}
+                                id="bal"
+                                variant="outlined"
+                                onChange={qtHandler}
+                                value={qt}
+                            />
+                        </div>
+                        <div>
+                            <Typography variant="body2" className={styles.body}>
+                                Market Price
+                            </Typography>
+                            <Typography variant="body1" className={styles.price}>
+                                {"$" + Math.round(100 * modifiedData[0]["stockData"]["adjusted_close"])/100}
+                            </Typography>
+                        </div>
+                        <div>
+                            <Typography variant="h6" className={styles.body2}>
+                                Estimated Cost
+                            </Typography>
+                            <Typography variant="body1" className={styles.cost}>
+                                {"$" + Math.round(100 * (qt * modifiedData[0]["stockData"]["adjusted_close"]))/100}
+                            </Typography>
+                        </div>
+                        <div>
+                            <Typography variant="h6" className={styles.body2}>
+                                Leftover Balance
+                            </Typography>
+                            <Typography variant="body1" className={styles.reCost}>
+                                {(estimated_bal < 0 ? "-$" : "$") + Math.abs(estimated_bal)}
+                            </Typography>
+                        </div>
+                        <div>
+                            <Button
+                                variant="contained"
+                                className={styles.addButton}
+                                onClick={handleAddStock}
+                                style={{
+                                    backgroundColor: "rgb(0,217,0)"
+                                }}
+                            >
+                                Buy
+                            </Button>
+                        </div>
                     </div>
-                    <div>
-                        <Typography variant="body2" className={styles.body}>
-                            Shares
-                        </Typography>
-                        <TextField
-                            type={"number"}
-                            InputProps={{
-                                classes: {
-                                    input: styles.bal
-                                },
-                                inputProps: {
-                                    max: 100000, min: 1
-                                }
-                            }}
-                            style={{
-                                width: 100,
-                            }}
-                            className={styles.bal}
-                            id="bal"
-                            variant="outlined"
-                            onChange={qtHandler}
-                            value={qt}
-                        />
-                    </div>
-                    <div>
-                        <Typography variant="body2" className={styles.body}>
-                            Market Price
-                        </Typography>
-                        <Typography variant="body1" className={styles.price}>
-                            {"$" + Math.round(100 * modifiedData[0]["stockData"]["adjusted_close"])/100}
-                        </Typography>
-                    </div>
-                    <div>
-                        <Typography variant="h6" className={styles.body2}>
-                            Estimated Cost
-                        </Typography>
-                        <Typography variant="body1" className={styles.cost}>
-                            {"$" + Math.round(100 * (qt * modifiedData[0]["stockData"]["adjusted_close"]))/100}
-                        </Typography>
-                    </div>
-                    <div>
-                        <Typography variant="h6" className={styles.body2}>
-                            Leftover Balance
-                        </Typography>
-                        <Typography variant="body1" className={styles.reCost}>
-                            {(estimated_bal < 0 ? "-$" : "$") + Math.abs(estimated_bal)}
-                        </Typography>
-                    </div>
-                    <div>
-                        <Button
-                            variant="contained"
-                            className={styles.addButton}
-                            onClick={handleAddStock}
-                            style={{
-                                backgroundColor: "rgb(0,217,0)"
-                            }}
-                        >
-                            Buy
-                        </Button>
-                    </div>
-                </div>
-                : null}</div>}></TabPanel>
+                    : null}</div>}></TabPanel>
             <TabPanel value={value} index={1} data={<div>
                 {modifiedData.length > 0 ?
-                <div className={styles.rectangle}>
-                    <div className={styles.mainTag}>
-                        <Typography variant="h6" className={styles.buyTag}>
-                            {"Sell " + ((modifiedData[0]["data"]["symbol"]).toUpperCase())}
-                        </Typography>
-                        <Typography className={styles.balanceTag}>
-                            {"Balance: " + Math.round(100 * balance)/100}
-                        </Typography>
+                    <div className={styles.rectangle}>
+                        <div className={styles.mainTag}>
+                            <Typography variant="h6" className={styles.buyTag}>
+                                {"Sell " + ((modifiedData[0]["data"]["symbol"]).toUpperCase())}
+                            </Typography>
+                            <Typography className={styles.balanceTag}>
+                                {"Balance: " + Math.round(100 * balance)/100}
+                            </Typography>
+                        </div>
+                        <div>
+                            <Typography variant="body2" className={styles.body}>
+                                Shares
+                            </Typography>
+                            <TextField
+                                type={"number"}
+                                InputProps={{
+                                    classes: {
+                                        input: styles.bal
+                                    },
+                                    inputProps: {
+                                        max: 100000, min: 1
+                                    }
+                                }}
+                                style={{
+                                    width: 100,
+                                }}
+                                className={styles.bal}
+                                id="bal"
+                                variant="outlined"
+                                onChange={qtHandler}
+                                value={qt}
+                            />
+                        </div>
+                        <div>
+                            <Typography variant="body2" className={styles.body}>
+                                Market Price
+                            </Typography>
+                            <Typography variant="body1" className={styles.price}>
+                                {"$" + Math.round(100 * modifiedData[0]["stockData"]["adjusted_close"])/100}
+                            </Typography>
+                        </div>
+                        <div>
+                            <Typography variant="h6" className={styles.body2}>
+                                Est. Profit/Share
+                            </Typography>
+                            <Typography variant="body1" className={styles.cost}>
+                                {(estimatedValue < 0 ? "-$" : "$") + Math.abs(estimatedValue)}
+                            </Typography>
+                        </div>
+                        <div>
+                            <Typography variant="h6" className={styles.body2}>
+                                Estimated Balance
+                            </Typography>
+                            <Typography variant="body1" className={styles.reCost}>
+                                {(estimated_bal2 < 0 ? "-$" : "$") + Math.abs(estimated_bal2)}
+                            </Typography>
+                        </div>
+                        <div>
+                            <Button
+                                variant="contained"
+                                className={styles.addButton}
+                                onClick={handleRemoveStock}
+                                style={{
+                                    backgroundColor: "rgba(255,0,0,0.8)"
+                                }}
+                            >
+                                Sell
+                            </Button>
+                        </div>
                     </div>
-                    <div>
-                        <Typography variant="body2" className={styles.body}>
-                            Shares
-                        </Typography>
-                        <TextField
-                            type={"number"}
-                            InputProps={{
-                                classes: {
-                                    input: styles.bal
-                                },
-                                inputProps: {
-                                    max: 100000, min: 1
-                                }
-                            }}
-                            style={{
-                                width: 100,
-                            }}
-                            className={styles.bal}
-                            id="bal"
-                            variant="outlined"
-                            onChange={qtHandler}
-                            value={qt}
-                        />
-                    </div>
-                    <div>
-                        <Typography variant="body2" className={styles.body}>
-                            Market Price
-                        </Typography>
-                        <Typography variant="body1" className={styles.price}>
-                            {"$" + Math.round(100 * modifiedData[0]["stockData"]["adjusted_close"])/100}
-                        </Typography>
-                    </div>
-                    <div>
-                        <Typography variant="h6" className={styles.body2}>
-                            Est. Profit/Share
-                        </Typography>
-                        <Typography variant="body1" className={styles.cost}>
-                            {(estimatedValue < 0 ? "-$" : "$") + Math.abs(estimatedValue)}
-                        </Typography>
-                    </div>
-                    <div>
-                        <Typography variant="h6" className={styles.body2}>
-                            Estimated Balance
-                        </Typography>
-                        <Typography variant="body1" className={styles.reCost}>
-                            {(estimated_bal2 < 0 ? "-$" : "$") + Math.abs(estimated_bal2)}
-                        </Typography>
-                    </div>
-                    <div>
-                        <Button
-                            variant="contained"
-                            className={styles.addButton}
-                            onClick={handleRemoveStock}
-                            style={{
-                                backgroundColor: "rgba(255,0,0,0.8)"
-                            }}
-                        >
-                            Sell
-                        </Button>
-                    </div>
-                </div>
-                : null}</div>}></TabPanel>
+                    : null}</div>}></TabPanel>
         </div>
     )
 }

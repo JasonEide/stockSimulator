@@ -3,11 +3,12 @@ import styles from './menu.module.css';
 import {Button, IconButton} from "@material-ui/core";
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import CloseIcon from '@material-ui/icons/Close';
-import { Link } from "react-router-dom";
-import {is_logged} from "../userForm/userFormLogin";
+import {Link, useNavigate} from "react-router-dom";
 
 export default function Menu() {
     const [menu, setMenu] = useState(false);
+    const navi = useNavigate();
+    let is_logged = (JSON.parse(localStorage.getItem("is_logged")));
     
     async function handleUserIcon() {
         var prop = document.getElementById("menu");
@@ -24,8 +25,10 @@ export default function Menu() {
         setMenu(!menu);
     }
 
-    async function logoutUser() {
-        
+    const logoutUser = async () => {
+        localStorage.setItem("is_logged", "false");
+        localStorage.setItem("curr_user", "null");
+        window.location.reload();
     }
 
     return (

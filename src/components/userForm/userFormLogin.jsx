@@ -49,6 +49,8 @@ function UserFormL(){
                 is_valid = true;
                 is_logged = true;
                 curr_user = users[i];
+                localStorage.setItem("curr_user", JSON.stringify(curr_user));
+                localStorage.setItem("is_logged", JSON.stringify(is_logged));
                 break;
             }
         }

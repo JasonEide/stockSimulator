@@ -1,4 +1,3 @@
-import {curr_user, is_logged} from "../userForm/userFormLogin";
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -54,6 +53,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function MTable() {
+    let curr_user = null;
+    let is_logged = (JSON.parse(localStorage.getItem("is_logged")));
+    if(is_logged){
+        curr_user = (JSON.parse(localStorage.getItem("curr_user")));
+    }
     let lst = [{'date':'00/00/0000, 0:00:00', 'stock':'AAPL', 'price':111.11, 'qt':1,}]
     const classes = useStyles();
     const [page, setPage] = React.useState(0);

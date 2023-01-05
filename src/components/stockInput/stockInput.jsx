@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {TextField, Button, Typography} from '@material-ui/core';
 import styles from './stockInput.module.css';
-import {curr_user, is_logged} from "../userForm/userFormLogin";
 import {updateDoc, doc, arrayUnion} from "@firebase/firestore";
 import {db} from "../userForm/firebase-config";
 import {Tabs, Tab, AppBar} from "@material-ui/core";
@@ -9,6 +8,11 @@ import {Tabs, Tab, AppBar} from "@material-ui/core";
 export default function StockInput({data}) {
     const [qt, setQt] = useState(1);
     const [add, setAdd] = useState(true);
+    let curr_user = null;
+    let is_logged = (JSON.parse(localStorage.getItem("is_logged")));
+    if(is_logged){
+        curr_user = (JSON.parse(localStorage.getItem("curr_user")));
+    }
     const [balance, setBalance] = useState((curr_user == null ? 0 : curr_user.balance));
     const qtHandler = event => {
         setQt(event.target.value);
@@ -26,11 +30,12 @@ export default function StockInput({data}) {
                 let holdings = curr_user.holdings
                 for(let i = 0; i<holdings.length; i++){
                     let usr_tkr = holdings[i]['StockTIKR'];
-                    let data_tkr = data.state.data[0]['data']['symbol']
+                    let data_tkr = data.state.data[0]['data']['symbol'].toUpperCase();
                     if(usr_tkr.toUpperCase()=== data_tkr.toUpperCase()){
                         holdings[i]['Amount'] = parseInt(holdings[i]['Amount']) + parseInt(qt);
                         await updateDoc(user_ref, {holdings: holdings});
                         curr_user.holdings = holdings
+                        localStorage.setItem("curr_user", JSON.stringify(curr_user));
                         holdings_updated = true;
                     }
 
@@ -46,6 +51,7 @@ export default function StockInput({data}) {
                 histry.push({"date":new Date().toLocaleString(), "stock": data_tkr.toUpperCase(), "qt":parseInt(qt), "price":prc, "ordertype":"BUY", "Profit/Loss": "FLOATING"});
                 await updateDoc(user_ref, {trading_history: histry});
                 curr_user.trading_history = histry;
+                localStorage.setItem("curr_user", JSON.stringify(curr_user));
             }
             else{
                 alert("Insufficient Balance. stack more bread u broke fag.")
@@ -72,15 +78,16 @@ export default function StockInput({data}) {
                         await updateDoc(user_ref, {balance: bal})
                         curr_user.balance = bal;
                         setBalance(bal);
-                        let data_tkr = data.state.data[0]['data']['symbol'];
+                        let data_tkr = data.state.data[0]['data']['symbol'].toUpperCase();
                         let prc = parseFloat(data.state.data[0]['stockData']['adjusted_close'])
                         let histry = curr_user.trading_history;
+                        localStorage.setItem("curr_user", JSON.stringify(curr_user));
                         let curr_qt = qt;
                         for(let i = 0; i< histry.length; i++){
                             if(curr_qt === 0){
                                 break;
                             }
-                            if(histry[i]['stock'] === (data.state.data[0]['data']['symbol']).toUpperCase() && histry[i]["type"] === "buy"){
+                            if(histry[i]['stock'] === (data.state.data[0]['data']['symbol']).toUpperCase() && histry[i]["ordertype"] === "BUY"){
                                 if(curr_qt!==0){
                                     if(curr_qt>=histry[i]['qt']){
                                         histry.push({"date":new Date().toLocaleString(),
@@ -108,6 +115,7 @@ export default function StockInput({data}) {
                         }
                         await updateDoc(user_ref, {trading_history: histry});
                         curr_user.trading_history = histry;
+                        localStorage.setItem("curr_user", JSON.stringify(curr_user));
                         ActionCompleted = true;
                         break;
                     }
@@ -118,15 +126,16 @@ export default function StockInput({data}) {
                         bal = (bal + (qt*data.state.data[0]['stockData']['adjusted_close']))
                         await updateDoc(user_ref, {balance: bal})
                         curr_user.balance = bal;
-                        let data_tkr = data.state.data[0]['data']['symbol'];
+                        let data_tkr = data.state.data[0]['data']['symbol'].toUpperCase();
                         let prc = parseFloat(data.state.data[0]['stockData']['adjusted_close'])
                         let histry = curr_user.trading_history;
+                        localStorage.setItem("curr_user", JSON.stringify(curr_user));
                         let curr_qt = qt;
                         for(let i = 0; i< histry.length; i++){
                             if(curr_qt === 0){
                                 break;
                             }
-                            if(histry[i]['stock'] === (data.state.data[0]['data']['symbol']).toUpperCase() && histry[i]["type"] === "buy"){
+                            if(histry[i]['stock'] === (data.state.data[0]['data']['symbol']).toUpperCase() && histry[i]["ordertype"] === "BUY"){
                                 if(curr_qt!==0){
                                     if(curr_qt>=histry[i]['qt']){
                                         histry.push({"date":new Date().toLocaleString(), 
@@ -157,6 +166,7 @@ export default function StockInput({data}) {
                         }
                         await updateDoc(user_ref, {trading_history: histry});
                         curr_user.trading_history = histry;
+                        localStorage.setItem("curr_user", JSON.stringify(curr_user));
                         ActionCompleted = true;
                         break;
                     }
@@ -185,7 +195,7 @@ export default function StockInput({data}) {
         if(modifiedData.length>0 && is_logged){
             for(let i = 0; i < curr_user.holdings.length; i++){
                 if (curr_user.holdings[i]['StockTIKR'] === modifiedData[0]['data']['symbol'].toUpperCase()){
-                    return Math.round(100 * (curr_user.holdings[i]['Price'] - modifiedData[0]['stockData']['adjusted_close']))/100;
+                    return Math.round(100 * (modifiedData[0]['stockData']['adjusted_close'] - curr_user.holdings[i]['Price']))/100;
                 }
             }
 

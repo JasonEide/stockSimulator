@@ -1,11 +1,15 @@
 import React, {useState} from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
-import {curr_user, is_logged} from "../userForm/userFormLogin";
 import styles from './pieChart.module.css';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function PieChart() {
+    let is_logged = (JSON.parse(localStorage.getItem("is_logged")));
+    let curr_user = null;
+    if(is_logged){
+        curr_user = (JSON.parse(localStorage.getItem("curr_user")));
+    }
     const qt = []
     const stocks = []
     if (curr_user !== undefined) {

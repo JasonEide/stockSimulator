@@ -38,11 +38,18 @@ function UserFormR(){
     };
     const navi = useNavigate();
     const usersRef = collection(db, "users");
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     const register_user = async () => {
-        await addDoc(usersRef, {email: email, password: values.password, balance: bal, holdings: [], trading_history: []});
-        alert("Account Created! You'll be redirected to login.")
-        navi("/login");
+        if(email.match(re)){
+            await addDoc(usersRef, {email: email, password: values.password, balance: bal, holdings: [], trading_history: []});
+            alert("Account Created! You'll be redirected to login.")
+            navi("/login");
+        }
+        else{
+            alert("Please enter a valid email")
+        }
+
     }
 
     return(

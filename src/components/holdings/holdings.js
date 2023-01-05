@@ -1,4 +1,3 @@
-import {curr_user, is_logged} from "../userForm/userFormLogin";
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -66,7 +65,11 @@ function Holdings() {
     const classes = useStyles();
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
+    let is_logged = (JSON.parse(localStorage.getItem("is_logged")));
+    let curr_user = null;
+    if(is_logged){
+        curr_user = (JSON.parse(localStorage.getItem("curr_user")));
+    }
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };

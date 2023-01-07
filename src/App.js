@@ -4,7 +4,7 @@ import Input from './components/input/input.jsx';
 import Charts from './components/chart/chart';
 import Menu from './components/menuLogger/menu';
 import {fetchData} from './api';
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import {HashRouter as Router, Routes, Route} from "react-router-dom";
 import UserFormLogin from "./components/userForm/userFormLogin";
 import UserFormRegister from "./components/userForm/userFormRegister";
 import StockInput from './components/stockInput/stockInput';

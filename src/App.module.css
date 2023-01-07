@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(72, 69, 69);
+  background-color: rgb(31, 33, 59) !important;
 }
 .container {
   display: flex;
@@ -15,8 +15,6 @@ body {
   margin-bottom: 50px;
   background-color: white;
   border-radius: 13px;
-  box-shadow:  5px 5px 10px #d9d9d9,
-              -5px -5px 10px #ffffff;
 }
 .pieChart {
   background-color: black;

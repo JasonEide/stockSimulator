@@ -41,7 +41,7 @@ class App extends React.Component {
           <Routes>
             <Route path={"/login"} element={<UserFormLogin/>}/>
             <Route path={"/register"} element={<UserFormRegister/>}/>
-            <Route path={"/"} element={
+            <Route path={"/stockSimulator"} element={
             <div className={styles.container}>
               <div className={styles.rectangle}>
                 <Input data={this}/>

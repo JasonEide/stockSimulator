@@ -1,16 +1,9 @@
 <a name="readme-top"></a>
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
 <img style = "width: 200px" src= "https://g.foolcdn.com/editorial/images/565090/hot-stocks.jpg"></img>
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 Allows users to view the performance of a specific stock over time by displaying a graph of its price movements. Users can also buy and sell stocks through the application, using virtual currency to simulate real-world trading. The application keeps track of users' trading history, including all completed trades and their associated details.
 

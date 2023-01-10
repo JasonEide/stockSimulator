@@ -1,7 +1,6 @@
 <a name="readme-top"></a>
-
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## About The Project, access via https://jasoneide.github.io/stockSimulator/
 
 <img style = "width: 200px" src= "https://g.foolcdn.com/editorial/images/565090/hot-stocks.jpg"></img>
 
@@ -13,10 +12,6 @@ To use the application, users must first register and create an account. This is
 
 <!-- GETTING STARTED -->
 ## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.

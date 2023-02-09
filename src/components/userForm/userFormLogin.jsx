@@ -109,7 +109,7 @@ function UserFormL(){
                 </div>
                 <div>
                     <IconButton className={styles.loginBack}>
-                            <Link to={"/stockSimulator"} className={styles.link}>
+                            <Link to={"/"} className={styles.link}>
                                 <ArrowBackIcon className={styles.backIcon}/> 
                             </Link>
                     </IconButton>

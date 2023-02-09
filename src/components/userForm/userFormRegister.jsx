@@ -116,7 +116,7 @@ function UserFormR(){
                 </div>
                 <div>
                     <IconButton className={styles.registerBack}>
-                        <Link to={"/stockSimulator"} className={styles.link}>
+                        <Link to={"/"} className={styles.link}>
                             <ArrowBackIcon className={styles.backIcon}/> 
                         </Link>
                     </IconButton>

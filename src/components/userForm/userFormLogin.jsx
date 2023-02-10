@@ -55,7 +55,7 @@ function UserFormL(){
             }
         }
         if(is_valid){
-            navi("/stockSimulator")
+            navi("/")
         }
         else{
             alert("Invalid Credentials, Please Try Again.")
